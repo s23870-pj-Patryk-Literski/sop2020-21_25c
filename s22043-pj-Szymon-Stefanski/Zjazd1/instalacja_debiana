@@ -1,0 +1,184 @@
+DEBIAN INSTALACJA
+1. STRONA INTERNETOWA - www.debian.org
+
+Debiana mozna pobrac od razu z linku na pierwszej stronie lub
+kliknac "wiecej" > "pobieranie" > "maly plik obrazu" i pod
+spodem tego ostatniego wyswietla sie informacja o pliku ISO
+64-bity PC.
+Ostatnia z mozliwosci pobrania jest klikniecie "plik obrazu"
+gdzie beda trzy opcje instalacji przez siec:
+- male plyty CD lub pamiec USB,
+- najmniejsze plytki, napedy USB,
+- bootowanie przez siec,
+Kazda z powyzszych opcji ma wiele plikow obrazow mozliwych
+do pobrania w zaleznosci od architektury procesora.
+
+Co Ja wybralem?
+Wybralem pierwsza z opcji, pobranie z glownej strony
+debiana jest najprostsza forma bez zaglebiania sie
+w szczegoly.
+
+2. ZALADOWANIE MASZYNY WIRTUALNEJ.
+
+W VirtualBoxie nalezy "zamatowac" sciagniety plik,
+nalezy odpowiednio kliknac:
+Maszyna > Nowa > Debian(64-bit) > 2048MB (UWAGA -
+dla bezpieczenstwa korzystac z wielokrotnosci liczby
+2 np 1024, 2048 itp) > Stworz wirtualny dysk twardy >
+VDI (VirtualBox Disk Image) > Dynamicznie przydzielany >
+8GB (lub wiecej, wielokrotnosc liczby 2 np. 8, 16 itp)
+
+
+W przypadku dynamicznie przydzielanego miejsca mozemy wybrac 
+rowniez staly rozmiar, w pierwszym przypadku rozmiar jest 
+przydzielany na biezaco wedle potrzeb, w drugim przypadku 
+z gory rezerwowane jest okreslone miejsce.
+
+3. USTAWIENIA MASZYNY WIRTUALNEJ.
+
+a) zakladka system:
+plyta glowna > odznaczyc floppy i naped optyczny,
+procesor > z 1 CPU zmienic na 2 CPU (zwieksza szybkosc),
+
+b) pamiec:
+kontroler:IDE > plyta brak > z prawej strony jest ikona
+plyty(kliknac) > choose a disk file > wskazac sciagniety plik
+
+c) dzwiek - odznaczyc (wylaczyc),
+
+d) siec - powinna byc podlaczona do: NAT (podlaczenie do
+internetu, maszyna wirtualna bez kontaktu z fizycznym komputerem),
+
+Inne dostepne opcje to:
+- mostkowana karta sieciowa (komputer wirtualny),
+- siec wewnetrzna (spiecie razem maszyn wirtualnych),
+- karta sieci izolowanych (polaczenie Windowsa i maszyny
+wirtualnej),
+- rodzajowy sterownik (sterownik nietypowego urzadzenia),
+- siec NAT (siec wewnetrzna z cechami NAT),
+- Cloud Network (na dzien 10/03/2021 eksperymentalne),
+- niepodlaczona,
+
+e) porty szeregowe - off,
+
+f) USB - USB 2.0 (OHCI+EHCI)Controller.
+
+4. URUCHOMIENIE MASZYNY WIRTUALNEJ.
+
+Z panelu uzytkownika wybrac:
+Czarna strzalke z prawej strony przy duzej zielonej strzalce
+z podpisem "uruchom" i kliknac "zwykly start".
+Pozostale opcje to:
+- bezglowy start (bez okienka),
+- oddzielny start,
+
+Gdy zaczniemy uruchamianie i pojawi sie okienko nalezy szybko
+"wklikac" sie w okienko i kliknac w nim klawisz F12 zanim zgasnie
+logo VirtualBoxa, kliknac przechwycanie w okienku ktore wyskoczy.
+
+Sprawdzic czy jest prawidlowo zaladowany plik obrazu:
+urzadzenia > narzedzia optyczne
+
+Opcje wyswietlane na ekranie VirtualBoxa:
+ACCI controller:
+hard disk - system operacyjny uruchomi sie z pierwszego
+dysku twardego,
+
+Other boot devices:
+CD-ROM - montaz z napedu, np. ISO,
+Floppy - obraz dyskietki,
+LAN - przez siec (serwer instalacji sieciowej),
+Continue booting - system operacyjny uruchomi sie z domyslnego
+dysku twardego
+
+5. INSTALOWANIE SYSTEMU DEBIAN.
+
+Wcisnac c - nalezy zjechac na inna opcje niz wybrana na poczatku,
+po jakims czasie by sie automatycznie odpalila.
+
+Opcje:
+- graphical install (instalator graficzny),
+- install (instalacja w trybie tekstowym),
+- advanced options (rozne zaawansowane opcje),
+- accessible dark contrast installer menu (kontrastowy instalator,
+instalator dla ludzi z problemami wzrokowymi),
+- help,
+- install with speech synthesis (instalacja z dzwiekami
+syntezowanymi)
+
+Z powyzszego nalezy wybrac INSTALL.
+Dalsze kroki:
+jezyk - angielski,
+region - Europe > Poland,
+ustawienia jezyka - United States,
+klawiatura - American English,
+
+Podac nazwe systemu - "debian" moze zostac.
+Domain - nic nie wpisywac,
+Root password - ustalic haslo administratora (dlugie i trudne),
+Ponowic poprzednie haslo.
+Podac nazwe uzytkownika - nie wiecej niz 8 znakow, moga byc tam
+duze litery.
+Login uzytkownika - tylko male litery.
+Podac i powtorzyc haslo dla uzytkownika,
+
+PARTYCJONOWANIE:
+
+Guided - use entire disk (kreator),
+Guided - use entire disk and set up LVM (to samo z dynamicznym
+zarzadzaniem miejscami),
+Guided - use entire disk and set up encrypted LVM (to samo co
+poprzednio ale z szyfrowaniem danych),
+Manual - reczne partycypowanie.
+
+Nalezy wybrac manualne partycjonowanie, wybrac zamatowana maszyny i
+wyczyscic (FREE SPACE).
+Wcisnac FREE SPACE i create new partition:
+rozmiar - to co sie wyswietli minus 2GB,
+primary partition (pierwsza) > begining,
+Bootable flag : on,
+Done setting up the partition.
+W ten sposob uwtorzy sie podstawowa partycja.
+
+Nastepnie nalezy stworzyc nastepna partycje:
+rozmiar - pozostale 2GB,
+logical partition,
+Use as > swap area,
+Done setting up the partition.
+
+Partycjonowanie zakonczone, nalezy wcisnac:
+Finish partitioning and write changes to disk.
+W podsumowaniu wcisnac > Yes.
+W Scan another CD or DVD > No.
+
+Wybor serwera: Poland > deb.debian.org (wybrac w zaleznosci od
+polozenia, na zajeciach pokazywane bylo podlaczenie sie do serwera
+z Gdanska, niestety mieszkam 160km od niego wiec domyslnie wybralem
+ten serwer).
+
+Proxy - jesli nie musimy sie przez nie laczyc to wciskamy continue.
+
+Software selection - konfigurowanie systemu.
+Master boot record - yes (w pierwszym systemie).
+Device for boot loader - wybrac dysk twardy.
+
+GNU GRUB - Debian GNU/Linux
+Zalogowac sie...
+ALT + F2 - zmiana konsoli tekstowej.
+Zalogowac sie jako administrator...
+
+apt-get update - sciaganie aktualizacji,
+apt-get install aptitude (lub inna nazwa programu) - instalacja
+programu,
+
+Szukanie za pomoca np. apt search aptitude (lub inna nazwa
+programu) lub aptitude search aptitude.
+
+tasksel - konfigurowanie systemu.
+
+Samo polecenie aptitude wlacza tekstowo-graficzny interface
+Gdy wcisniemy klawisz ? bez shifta wlaczamy widok nazw, wersji
+itp.
+
+Gdy zakonczymy caly proces nalezy wpisac w konsoli exit w obu
+konsolach tekstowych.
