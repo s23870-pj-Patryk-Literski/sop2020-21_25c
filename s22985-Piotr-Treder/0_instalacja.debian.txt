@@ -1,0 +1,255 @@
+------ POBIERANIE OBRAZU -------------------------------------------------------------------
+
+Debian możemy pobrać ze strony: https://www.debian.org/index.pl.html
+
+-> Pobieranie ( odrazu zaczyna pobierać obraz przystosowany do komputera - > czyli ISO
+	-> Jeżeli chcemy pobrać niestandardowy obraz przystosowany do innych urządzeń/wymagań
+		możemy przejść do takowych w zakładce ->" More .... "
+												-> Downlowad
+		
+-- Tam znajdujemy obrazy przystosowane do większości urządzeń / architektur procesorów / 
+								lub inne możliwości stawiania systemu niż przez 
+															rozszerzenie .iso
+	
+
+------- VirtualBOX -------------------------------------------------------------------------
+Przystosowanie Wirtualki do postawienia na komputerze: 
+!! Potrzebna bedzie ścieżka do obrazu iso !!
+Wybieramy na menu opcję Maszyna-> Nowa 
+Wyskakuje Okno " Utwórz wirtualną maszynę " 
+W opcji " name " możemy wpisać pooczątkowe litery systemu 
+i wyskoczy nam probponowany. Dla przykładu : 
+							po wpisaniu " Deb " 
+							Typ zamieni się na :	Linux 
+							Wersja zamieni się na : Debian ( 64-bit ) 
+													( Odpowiednio do komputera
+													na którym bedzie instalowany )
+Następnie : 
+- Przechodzimy dalej
+
+	- Przydzielamy ilość pamięci RAM w MB do maszyny 
+	wartość powinna być 2 do i-tej potęgi ( np. 2048 MB )
+	
+		- tworzymy nowy dysk wirtualny ( środkowa opcja )
+		Utwórz:
+		VDI ( Virtual Disk Image   ) - ( zawsze wybierać ) 
+		VHD ( Virtual Hard Disk    ) - w przypadku gdy mamy już jakiś dysk HyperV- może on 
+									   zadziałać 
+	    VMDK ( Virtual Machine Disk ) - VM Ware udostępnia możliwość odpalenia maszyny na VB
+			
+		Dalej: 
+		Pamięc na fizycznym dysku twardym
+		Wybieramy opcję Dynamicznie przydzielany, jeżeli chcemy aby  program 
+		automatycznie przystosował ilość zajętego miejsca przez wirtualny dysk 
+		
+		lub:
+		
+		Stały rozmiar, jeżeli dysk ma mieć tyle miejsca ile chcemy aby zajął
+		
+		Dalej:
+		Wybieramy lokalizacje wirtualnego dysku na na dysku fizycznym, oraz 
+		początkowy rozmiar maszyny ( 16GB na początek na pewno wystarczy )
+		
+Po zakończeniu przydzielania dysku pojawiła się spirala 
+	Wciskamy PPM na debiana -> Ustawienia 
+
+Mamy opcję: 
+
+Ogólne: Już ustawiliśmy podczas poprzednich ustawień 
+
+System: pod zakłądką Płyta główna :Tu możemy Zmienić ilość RAM, ustawić kolejnośc bootowania 
+		lub podłączyć/odłączyć pewne napędy ( Floppy, Napęd CD, Dysk Twardy, Network )
+		odłączamy napęd optyczny i floppy ( zostaje sam dysk twardy )
+		Procesor : możemy ustawić ilość rdzeni procesora, które będą ubsługiwać maszynę
+				   W tym przypadku ustawiamy 2 rdzenie 
+		
+
+Ekran:
+
+Pamięć: W pamięci ustawiamy początkowy rozruch maszyny w której ustawiamy 
+		Ustawiamy : LPM -> Kontroler IDE 
+								|
+								|-- Brak <- LPM 
+									Po prawej stronie 
+									Parametry -> Napęd optyczny : IDE Secondary master 
+									Płytka po prawej -> Choose disk file ... 
+									Wybieramy plik .iso ściągnięty z internetu
+							Jeżeli wszystko pooszło zgodnie z planem 
+							pod Parametrami powinny byż informacje o obrazie
+							oraz ścieżka do pliku
+
+Dźwięk: Ogólne ustawienia Dźwięku czyli : 
+		sterownik dźwięku 
+		Kontroler audio
+		Właściwości
+		W naszym przypadku odznaczamy " Włącz dźwięk "
+		
+
+Sieć : 	NAT - Network Address Translation Naczęstszy wybór  
+		Bridged - Mostkowa kasta sieciowa 
+		Sieć wewnętrzna - do tworzenia małych sieci ( kilka komputerów ) do 
+						  w celu komunikacji pomiedzy komputerami 
+		Karta sieci izolowanej ( host-only ) - Pozwala połączyć system z którego maszyna 
+											   jest włączana do komunikacji pomiedzy 
+											   systemami
+		Rodzajowy sterownik - nie typowa komunikacja z urządzeniami innymi niż komputer
+		Sieć NAT - Podobna do sieci wewnętrznej umożliwiająca dostęp do internetu
+		
+
+		
+
+Porty szeregowe: 	Można wyłączyć - Służy do ustawienia dostępnych portów do maszyny
+																				wirtualnej
+
+USB:	Ustawiany na USB 2.0 Ma tak pozostać
+		
+
+Udostępniane foldery: Można udostępniać foldery z systemu na którym postawiona jest 
+					  maszyna wirtualna
+
+--------URUCHAMIANIE-----------------------------------------------------------------------
+
+Po prawej stronie jest strzałka 'Uruchom' 
+Po naciśnięciu automatycznie uruchamia się zwykły start
+po rozwinięciu pojawiają się opcje 
+
+Zwykły start : uruchamianie maszyny zupełnie normalnie jak zwykły program
+
+Bezgłowy start : startuje maszyne normalnie, ale nie bedzie opcji 'wyłączenia' 
+				 maszyny poprzez naciśnięcie [x] w prawym górnym 
+				 
+aby wejść do Boot menu wciskamy F12 po kliknięciu na okno maszyny i wybrania -> przechwyć
+
+Powinen być wybrany Hard disk na ACHI controller. Wybór tenn spowoduje uruchomienie się 
+z dysku niezależnie czy jest na nim system czy nie. 
+wciskając b) kontynuujemy booting
+
+chcąc wybrać inne opcje bootowania musimy wcisnąć znak reprezentujący daną opcję
+np. 
+l ) LAN - 
+f ) Floppy - rzadko wykorzystawanie zazwyczaj w przypadku próby odpalania starych systemów
+																			operacyjnych
+c ) CD-ROM - opcja odpalania pierwszego rozruchu z płyty CD-ROM
+
+Wybieramy c ) - z racji podłączenia obrazu.iso tak jak było wyżej
+
+Wtedy wyskakuje nam menu instalacji:
+
+	Graphical install - Zaznaczona jako domyślna instalacja z graficzną
+															możliwością
+															zarządzania
+	install - powoduje instalacje samego terminala ( szybkie i zajmujące
+													małą ilość pamięci )
+	Advanced options - opcje przywracania systemu itd. 
+	
+	Accesible dark contrast instealler menu - opcje dla ludzi 
+											z wadami wzroku do ustawiania
+											np. kolorów wyświetlanych
+	Install with speech synthesis - Instalator bedzie syntezował dźwięki 
+									systemu.
+	Po wybraniu Install : intalacja w trybie tekstowym 
+	
+	Language : English ( zalecane ) 
+			   zazwyczaj sie wybiera ponieważ podczas błędów 
+			   łatwiej znaleźć rozwiązanie problemu 
+	Country
+	teritory 
+	or area : other-> wybieramy najbliższy nam czyli Europe 
+						potem dalej szukamy Poland 
+	następnie wybieramy United States  - en_US.UTF-8 
+	( wybierana ponieważ nie bedzie mozliwosci wybierac znaków spoza alfabetu w folderach 
+	lub systemach plików ) 
+	
+	Dalej Enter:
+	
+	Keymap to use :
+	
+	wybieramy klawiature jaką mamy czyli American English 
+	
+	Następnie : 
+	
+	Podajemy nazwe systemu wewnatrz maszyny wirtualnej
+	<TAB>
+	-><CONTINUE> 
+	<ENTER>
+	
+	Następnie:
+	
+	Domain name: Nic nie trzeba wpisywać
+	
+	Root password: Wybór hasła mocnego żeby tylko root miał dostęp 
+	
+	Potem trzeba ponownie wpisać hasło 
+	
+	Full Name for the new user: 
+		lepiej żeby nazwa użytkownika nie mial wiecej niz 8 znaków ( dla standardu ) 
+												tym bardziej max 16 znaków 
+		np. User
+	Login : musi być z małej litery 
+	potem hasło dla użytkownika,
+	ponownie hasło
+	
+	teraz instalator startuje z instalacją 
+	Wyskakuje nam Partycjonowanie dysków 
+			Opcja 
+			LVM - dynamiczne zarządzani partycjami 
+			encrypted LVM - to co wyżej tylko szyfruje dane 
+			Guided 
+			Manual : Wybieramy SCSI2(0,0,0)	
+				Maksymalna ilośc partycji głównych to 4.  ( dlatego #1-#4 Primary )
+			Potem Wykakuje Pytanie czy utworzyć nową partycję dla tej operacji 
+																		<YES>
+			Potem jest pri/log -> wybieramy 
+			Podajemy rozmiar nowe partycji - > wybieramy to co jest domyślnie - 2GB 
+			Zaznaczmy Dalej Primary 
+			Wybieramy opcję Beginning ( Czyli adresowanie partycji na początku obszaru
+																			adresowania)
+			Wybieramy system plików 
+			Use as : Ext4 
+			
+			Bootable flag : ON ! <-
+			
+			wybieramy Done setting up 
+			
+			potem free space 2,0gb 
+			Create ne partition 
+			i wybieramy opcję Logiczną 
+			Wybieramy dalej enter 
+			i potem można wybrać 
+			jak uzy ta partycje 
+			do systemu plików 
+			
+			wybieramy swap area 
+			
+			Bootable flag : off 
+			
+			Done -> 
+			
+			Finish partitioning and write chages to disk -> 
+			
+			Rozpoczyna się instalacja systemu bazowego 
+			
+			Scan antoher CD or DVD >
+			 <NO> 
+			 
+			Wybieramy najbliższy znam serwer aby ściągać różne pakiety 
+			dla mnie najlepsza opcja to Poland -> ftp.task.gda.pl 
+			
+			Opcja wyboru serwera pośredniczącego proxy 
+			
+			Enter -> 
+			teraz pobiera pakiety 
+			
+			potem pytanie czy chcemy być ankietowani < NO > 
+			
+			dalej zaznaczamy software do instaalacji 
+			odznaczamy wersję graficzna 
+					   print serwer 
+			i zaznaczamy SSH Server
+			
+			Wybieramy gdzie ma być GRUB boot loader 
+			
+			Następnie logujemy się do postawionego systemu 
+											
+			   
+						
