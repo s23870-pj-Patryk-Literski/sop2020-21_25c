@@ -1,0 +1,109 @@
+Instalacja Debiana:
+
+1 Otwieram stronę Debian.org
+  Sposób 1:
+  Klikam pobierz na głównej stronie.
+
+  Sposób 2:
+  Na głownej stronie klikam więcej, następnie pobieranie
+  Na dole mamy opcje ISO netinst dla 64-bitowego PC, jest to plik, który pobiera sie przy użyciu 1 sposobu.
+  Klikam w "Pobierz plik obrazu", widzimy wtedy 3 sposoby instalacji przez sieć:
+
+  1.Małe płyty CD lub pamięc USB: to zostało ściągnięte wcześniej.
+  2.Najmniejsze płytki napędy USB: znajduje się sam instalator.
+  3.Bootowanie przez sieć:komputer, który nie ma dysku twardego, ale ma kartę sieciową można uruchomić system przez sieć.
+  
+  Wybieramy architekturę procesora:
+  Mamy do wyboru na przykład arm64, który jest nowym procesorem Appla.
+
+2 Virtual Box
+  Klikam Maszyna--> Nowa-->Wpisuje nazwę maszyny:Debian (windows ustawia automatycznie wersje na Debian 64)
+  Następnie przydzielamy ilość pamięci ( wartość powinna być wielokrotnością 2)--> Stwórz wirtualny dysk
+  Typ pliku z wirtualnym dyskiem, do wybory 3 opcje:
+  1. VDI: format virtual boxa, najlepiej zintegrowany z virtual boxem.
+  2. VHD
+  3. VDMI
+  Wybieram format VDI
+  Potem do wyboru:
+  1. pamieć dynamicznie przydzielana ( po stworzeniu nie zajmuję od razu całej pamieci tylko przydziela ją w miarę potrzeby)
+  2. stały rozmiar pamięci (od razu rezerwuję maksymalną pamięć, działa szybciej i płynniej)
+  Zaznaczam pamięć dynamiczna--> Ustawiam rozmiar i lokalizacje pliku.
+
+3 Ustawienia
+  Wchodzę w ustawienia Debiana--> System odznaczam: Floppy, Napęd optyczny--> Procesor (ustawiam prcoesor na 2)--> Pamięć:
+  klikam na ikonkę płyty (brak), po prawej stronie przy napędzie optycznym klikam w niebieski przycisk i wybieram opcje choose disk file.
+  Teraz wskazuję plik iso ściągnięty z internetu. Teraz przechodzę do dźwięku i odznaczam opcje włącz dźwięk (nie będziemy używać dźwięku).
+  Wybieram sieć podłączona do NAT: maszyna będzie mieć dostęp do internetu.
+  Inne opcje:
+  2.Mostkowanie karta sieciowa
+  3.Sieć wewnętrzna:można stworzyc sieć prywatna dla kilku maszyn wirtualnych stworzyć
+  4.Karta sieci izolowanej: łączy windowsa z maszyną wirtualna 
+  5.Rodzajowy sterownik: dla nietypowego urządznenia
+  6.Sieć NAT; Podobna do sieci wewnętrznej.
+  7.Cloud Network: nowa opcja
+  8.Niepodłączona
+
+4 Uruchomienie maszyny
+ Uruchom do wybory 3 opcje:
+ 1.Zwykły start: maszyna uruchamia sie w okienku
+ 2.Bezgłowy start: uruchamia sie bez okienka albo pojawia sie w okienku, ale zamkniecie go nie spowoduje wyłączneia maszyny.
+ 3.Oddzielny start
+
+ Klikam zwykły start, wklikuję sie w obraz maszyny, klikam przechwyć i wciskam f12.
+
+ Deteced hard disk:
+ AHCI controler :
+ 1) hard disk: system operacyjny uruchomi sie z pierwszego dysku twardego
+ f) Floppy: Podajemy obraz dyskietki, która zostanie użyta do uruchomienia maszyny wirtualnej 
+ c) cd-ROM: Uruchomienie z ISO
+ l) LAN: opcja do uruchamiania komputera przez sieć 
+ b) continue booting: uruchomi sie z domyślnego dysku twardego
+   klikam C)
+
+ Debian installer menu 6 opcji do wyboru:
+ Graphicall install: instalator graficzny (długo sie ładuje)
+ Install: tryb tekstowy
+ Advanced options: tryby przywracania systemu
+ Accessible dark contrast menu installer: lepiej widoczny dla krótko widzów
+ Help
+ Install with speed synthesis:Instalator będzie dźwiękiem informował o opcjach zaznaczanych
+ Wybieram install
+
+ Do wyboru język instalacji systemu: wybieram angielski
+ Teraz wybieram region z, którego sie łączę
+ znaki wybieram United States en_US.UTF-8--> wybieram klawiaturę american english
+
+ Podaje nazwę sytemu wewnątrz maszyny wirtualnej 
+ Root password: Root to amdministator ( hasło najlepiej zeby było długie i trudne)
+ Tworzymy konto nowego użytkownia systemy: login nie pownnien być dłuższy niż 8 znaków
+ 
+ Partition disk 4 opcje:
+ Guided-use entire disk: kreator stworzy projket partycji na dysku ( może zrobić nie tak jak chcemy)
+ Guided-use entire disk and set up LVM: Lvm(dynamiczne zarządzanie dyskami)
+ Guided-use entire disk and set up encrytphed LVM: to samo co wyzej tylko dodatkowo szyfrowanie danych
+ Manual: partycypowanie ręczne
+ Wybieram Manual
+ 
+ SCSI(0,0,0) (sda)-17.2 GB ATA VOX HARDISK: nasz dysk, który jest pusty 
+  klikam guided partitioning->->guided-use entire disk-->SCSI(0,0,0) (sda)-17.2 GB ATA VOX HARDISK -->Separate/home/var
+  -->SCSI(0,0,0) (sda)-17.2 GB ATA VOX HARDISK ( czyszczę propozyjcę partycji)--> create new particion--> podaje rozmiar-->primiary
+  -->begining 
+  Opcje:
+ Use as: ( jaki system plików ma byc zainstalowany ) -->done setting up the partition, potem tworzę kolejna partycję 
+ US as:
+ Ext4:szybszy od Ex3
+ Ext3:jest bezpieczniejszy od Ext
+ Ext2:jest szybszy do Ext3 
+ Wybieramy swap arena 
+ Następnie zapisujemy zmiany na dysku--> Wybieramy serwer, z którego będą pobierane pakiety: Poland -->fttp.task.gda.pl
+ -->software seletcion(wyłączamy wszystko poza dwoma ostatnimi opcjami)--> pytanie gdzie teraz zainstalować system-->wybieramy dysk twardy
+ --> dostajemy informacje, że instalacja została zakończona (maszyna virtualna sie restartuje )--> teraz wybieram Debian GNU/Linux
+
+ Podajemy login użytkownika i hasło 
+ Alt+f2 przechodzimy na kolejna konsolę tekstową  tty1->tty2 logujemy sie jako root. Poleceniem apt-get update auktualizuje listę pakietów 
+ apt-get install aptitude (instalowany pakiet)
+ apt search (można coś wyszukać)
+ wpisuje exit żeby sie wylogować z roota 
+
+  
+
