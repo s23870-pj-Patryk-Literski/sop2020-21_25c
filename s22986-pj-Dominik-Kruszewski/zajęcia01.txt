@@ -1,0 +1,92 @@
+Instalacja Debiana na VMware Workstation Pro:
+
+Krok 1:
+File -> New Virtual Machine
+
+Krok 2:
+Installer disc image file(iso) -> Klikamy Browse -> Wybieramy nasz ISO
+
+Krok 3:
+W polu Virtua machine name wpisujemy nazwę maszyny, a w polu Location wybieramy lokalizację dysków maszyny, najlepiej zostawić domyślną.
+
+Krok 4:
+W polu Maximum disk size wpisujemy wielkość dysku maszyny. Druga opcja jest po to czy maszyna ma trzymać każdą partycję w osobnym pliku czy wszytskie w jednym. Najlepiej zostawić to w ustawieniach domyślnych.
+
+Krok 5:
+W tym kroku możemy dostosować maszynę, jeśli nie potrzebujemy możemy zostawić ustawienia domyślne. 
+Po kliknięciu przycisku Finish maszyna się uruchomi
+
+Krok 6:
+Wybieramy język
+
+Krok 7:
+Wybieramy region
+
+Krok 8:
+Wybieramy język klawiatury
+
+Krok 9:
+W tym kroku w polu hostname wpisujemy nazwę maszyny. Może być to dowolna nazwa
+
+Krok 10:
+W tym kroku możesz wpisać nazwe domeny, która dotyczy lokalnej sieci. Jest to unikatowa nazwa która pozwoli na dostęp do danej maszyny bez znanaia adresu ip.
+
+Krok 11: 
+W tym kroku będziesz musiał podać hasła dla roota.
+
+Krok 12:
+Podaj login użytkowanika
+
+Krok 13:
+Podaj nazwę użytkowanika
+
+Krok 14: 
+Podaj hasło dla utworzonego użytkownika
+
+Krok 15:
+W tym kroku musisz wybrać swój region czasowy
+
+Krok 16: 
+W tym kroku musisz wybrać sposób partycjonowania systemu. Dla nowicjusza najlepsza jest pierwsza opcja, jeśli wiesz co robisz to wybierz opcję Manual
+
+Krok 17: 
+W tym kroku jeśli wybrałeś opcję pierwsza musisz wybrać dysk na którym będzie zainstalowany debian.
+
+Krok 18: 
+W tym kroku musisz wybrać czy chcesz wszystko na jednej partycji czy na wielu. Polecam wybrać pierwsza opcję gdy nie wiesz co to daje.
+
+Krok 19:
+Wybierasz Finish partitioning and write changes to disk
+
+Krok 20:
+Wybierasz Yes, teraz system zacznie się instalować
+
+Krok 21:
+Teraz wybierasz No i przechodzisz dalej
+
+Krok 22:
+W tym kroku wybierasz region skąd będziesz pobierał Pakiety
+
+Krok 23:
+Gdy wybrałeś Polskę jako region masz do wyboru różne serwery, gdy jesteś z trójmiasta to możesz wybrać serwer tasku 
+
+Krok 24:
+W tym kroku podajesz proxy jeśli musisz łączyć się przez proxy by mieć internet
+
+Krok 25:
+Jeśli chcesz uczestniczyć w konkursie na najlepszy pakiet to wybierasz Yes jeśli nie to No
+
+Krok 26:
+Tu wybierasz jakie oprogramowanie chcesz mieć zainstalowane na start z systemem.
+
+Krok 27:
+W tym kroku wybieramy czy GRUB ma być zainstalowany, dla osoby która się za bardzo nie zna lepiej wybrać opcję Yes
+
+Krok 28:
+Jeśli wybraliśmy jest, teraz wybieramy dysk gdzie grub ma się zainstalować, domyślnie trzeba wybrać /dev/sda
+
+Krok 29:
+Cieszymy się z zainstalowanego poprawnie Debiana
+
+
+
