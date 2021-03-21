@@ -1,0 +1,72 @@
+Instalacja systemu Debian:
+
+Wchodzimy na strone www.debian.org
+
+Możemy kliknąć od razu na głownej stronie pobierz, lub jeśli chcemy wiecęj opcji pobierania, zjeżdzamy na stronie w dół i klikamy wiecej.
+Wybieramy potem Debian to Wolny System Operacyjny i Pobieranie.
+Tam mamy wybory czy chcemy mały obraz który zaistaluje sie szybko, a reszta pobierze sie w trakcie instalacji.
+Wiekszy kompletny obraz zawiera wiecej pakietów, do instalacji nie wymaga polaczenia z internetem.
+
+My klikamy Pobrac plik obrazu.
+pobieramy amd64, arm64 jest na inna architekture procesora(np nowe procesory Appla).
+
+Po pobraniu obrazu, uruchamiamy VirtualBoxa, Maszyna->Nowa, wybieramy Debian(64bit) lub 32 w zaleznosci jaki pobralismy.
+Klikamy dalej i przypisujemy pamiec ram. Staramy sie dać minimum 2GB. Nastepnie tworzymy nowy dysk wirtualny.
+Glownie powinnismy polegac nad VDI(jest bardziej zaprojektowany/kompatybilny dla VirtualBoxa), jezeli bedziemy chcieli wykonywac 
+jakies bardziej zaawansowane rzeczy z dyskiem to VHD czy VMDK nie umozliwią nam wszystkiego.
+(Virtualbox rozpoznaje Microsotf Hyper-V Server,(inaczej VHD)).
+Nastepne dynamicznie przydzielany obraz, jesli wybierzemy statyczny to system bedzie miec przypisana okreslola ilosc miejsca i nie bedzie mog roznac.
+Nastepnie w ustawieniach danego systemu.
+
+W kategorii System mozemy miedzy innymi przypisac ilosc rdzeniu i wykorzystanie procesora. 
+Mozemy rowniez ustawic co ma bootowac a co nie, np funckje bootwac przez dyskietke mozemy wylaczyc.
+"Wlacz PAE/NX" to zostawiamy odznaczone(wirtualizacja w wirtualizacji).
+W kategorii Pamiec wybieramy co ma bootowac, niebieska plytka po prawej stronie i "Choose a disk file".
+W kategorii Siec zostawiamy NAT, jesli chcemy storzyc stworzyc siec prywatna dla kilu maszyn wirtualnych wybieramy Sieć Wewnętrzną.
+Porty szerogowe wylaczone.
+Aby wystartować maszyne mozemy za pomoca zielonej strzalki lub obok niej czarnej strzalki gdzie mamy 3 opcja.
+zwykly start - standardowy.
+Bezgłowy start - uruchomienie bez okienka.
+
+Wybieramy opcje zwykle uruchomienie i staramy sie zaraz po wyskoczeniu okienka klikamy na nie przechwycamy ekran i wciskamy szybko f12.
+mamy do wyboru 3 opcje bootowania, floppy-dyskietka, cd-rom-plytka oraz lan.
+My jako mamy plik iso klikamy c i wybieramy opcje Install.
+Inne opcje to: {
+Graphical install - czyli instalator graficzny, gdzie mamy normalnie myszke, ikony itp.
+Install - to typ instalacji sysytemu tekstowego.
+Advance options - m.in opcja przywracania systemu czy bootowanie w trybie ekspercki.
+Accesible dark constrast installer menu - dla osob slabo widzadzyc, zeby lepszy kontrans miec.}
+
+Przy wyborze jezyka zaleca sie wybor jezyka angielskiego, zeby latwiej w razie problemow mozna bylo znalezc rozwiazanie.
+Nastepnie wybieramy region, aby wybrac europe wybieramy "other" o tam znajdujemy europe, i nastepnie poland.
+Nastepnie ustawienia jezyka, najlepiej zostawic United States.
+Nastepnym krokiem wybieramy jaka mamy klawiature, my wybieramy American English.
+
+Klikamy enter i czekamy az system wczyta dane. Nastepnym krokiem jest podanie hostname/domene. My akurat zostawiamy puste okienko i klikamy enter.
+Nastepny jest Root password(uzytkownik,administrator-moze wszystko w systemam linux), w ramach bezpieczenstwa takie haslo powinno byc dlugie, nie znane nikomu poza administratorami.
+Aby zaznaczyc Show password, klikamy tab a przesc do tego wiersza i klikamy spacje aby zaznaczyc. Zatwierdzamy i lecimy dalej.
+Nastepnie jest glowny uzytkownik(imie i nazwisko).Login lepiej zeby nie mial wiecej niz 8 znakow, jesli jednak przekroczymy to max do 16. Pozniej moga wyjsc problemy.
+Kolejnym krokiem jest Username/nazwa uzytkownika. Nastepnie tworzymy haslo dla uzytkownika i zatwierdzamy.
+
+Patrycjonowanie dysku:
+Guided - kreator ktory przygotuje nam caly schemat konfiguracji, problem jest taki ze moze to robic nie tak jak chcemy.
+Guided(LVM) - logiczno-dynamiczne zarzadzanie dyskami np jak podpinamy nowy dyski, to jest mozliwe operowac nim bez wylacznia systemu.
+Guided(encrypted LVM) - to samo co wyzej tylko z dodatkowymi funkcjami szyfrowania danych.
+Manual - recznie, my go wybierzemy.
+
+SCSI2(sda) - nasz dysk
+nizej klikamy na miejsce, i create new partition. Podajemy rozmiar partycji ale odejmuje tak okolo 2GB. Ta partycje tworzymy jako podstawowa(primary) i beginning.
+Nastepnie wybieramy system plikow(domyslnie jest ext4) jedynie co zmieniamy to bootable flag off=>on. Klikamy Done i wracamy do partycji dyskow.
+Wybieramy nastepnie pozostale 2GB, tworzymy nowa parycje, my stworzymy logiczna, sposobu uzycia partycji jako zmieniamy z ext4 na "swap area". Zatwierdziamy i konczymy ustawianie partycji.
+Klikany zakoncz partycjonowanie i zapisujemy zmiany diskow. Wyswietla sie podsumowanie, potwierdzamy i idziemy dalej.
+Podczas przetwarzania danych bedziemy musieli wybrac serwer z ktorego bedziemy sciagac pakiety.
+Wybieramy poland, potem ftp.tast.gda.pl(jest najblizej nas) i mamy komunikat proxy. Jesli nie jestesmy zmuszenie to nic nie wpisujemy i zatwierdzamy.
+
+Gdy skonczy sciagac mamy wyskoczy nam okienko, tasksel. I tak mozemy wybrac zastosowanie dla instolowanego systemu. Spacja zaznaczamy badz odznaczamy. My zaznaczamy ssh server i standard system.
+Nastepnie wyskoczy nam zapytanie "GRUB boot" gdzie zainstalowac system/program rozruchowy(glowny record rozruchowy). Klikamy YES a nastepnie druga opcje gdzie jest nas dysk twardy.
+Na koniec wyskoczy nam komunikat o zakonczonej instalacji systemu (że mozemy wyjąć płytke itp) i klikamy Continue. Maszyna sie restartuje i wyskoczy nam okno Master boot record'u (GRUB ). Domyslne uruchamiane jest to pierwsza opcja Debian GNU/Linux.
+System sie laduje, prosi nas o podanie loginu oraz hasla. Aby przelaczyc sie na kolejna konsole tekstowa trzeba wcisnac Alt+F$(wcisnelismy F2) i logujemy sie na konto roota.
+
+Aktualizujemy pakiety komenda "apt-get update". Jesli chcemy zainstalowac konkretny pakiet to wpisujemy "apt-get install nazwa"(my wpisalismy aptitude). Aby wyszukac pakiet wpisujemy "apt search nazwa". Ten sam efekt mozna uzyskac za pomoca "nazwa search nazwa".
+Komenda "tasksel" wyswietli nam na nowo okiento tasksel gdzie mozemy np zaznaczyc aby pobral/zainstalowac sie nam system graficzny. Wciskamy cancel.Na dole jest wciaz konsola gdzie mozemy wpisac komendy i tak rowniez mozemy wyszukac, my wpisujemy nazwa(aptitude). Aby wyjsc z tego programu
+do instalacji pakietow klikamy "q" a nastepnie yes i wylogowujemy sie z uzytkownika root. Wpisujemy exit i enter.
