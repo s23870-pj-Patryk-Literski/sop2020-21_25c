@@ -1,0 +1,91 @@
+Instalacja systemu Debian:
+
+Pierwszym krokiem jest pobranie debiana ze strony www.debian.org. Klikamy w
+przycisk pobierania.
+
+
+VirtualBox
+Kolejnym krokiem jest odpalenie VirtualBox
+Wciskamy Maszyna -> Nowa -> Wpisujemy nazwe: Debian, po wpisaniu pierwszych liter program sam wykryje o co nam chodzi ->
+Przydzielamy ilość pamięci. Pamięć powinna być wielokrotnością liczby 2 np. 1024, 2048 itp. -> Stwórz wirtualny dysk twardy -> Tutaj mamy do wyboru 3 opcje:
+-VDI: format virtual boxa,
+-VHD,
+-VDMI,
+Wybieramy VDI -> Następnie mamy do wyboru:
+-pamięć dynamicznie przydzielana (przydziela tylko wymaganą pamięć, która jest aktualnie potrzebna)
+-stałý rozmiar pamięci (przydziela maksymalną wybraną pamięć) 
+Wybieramy pamięć dynamiczną -> Ustawiamy rozmiar i ustalamy lokalizację pliku.
+
+Ustawienia
+Wchodzimy w ustawienie Debiana -> System -> odznaczamy
+-Floppy,
+-napęd optyczny
+-> Procesor -> z 1 CPU zmieniamy na 2 CPU
+-> Pamięć -> klikamy ikonę płyty (brak) -> z prawej strony klikamy niebieski przycisk -> choose disk file -> wskazujemy pobrany plik
+-> Dźwięk -> wyłączamy
+-> Sieć -> Wybieramy sieć podłączoną do NAT: z tą opcją maszyna będzie miała dostęp do internetu
+Inne dostępne opcje:
+-Mostkowana karta sieciowa (komputer wirtualny),
+-Sieć wewnętrzna (łączymy razem maszyny wirtualne),
+-Karta sieci izolowanych (połączenie Windowsa z maszyną wirtualną),
+-Rodzajowy sterownik (dla nietypowego urządzenia),
+-Sieć NAT (zbliżona do sieci wewnętrznej),
+-Cloud Network,
+-Niepodłączona,
+
+Uruchomienie maszyny wirtualnej
+Mamy do wyboru 3 opcje:
+-Zwykły start (maszyna uruchomi się w okienku),
+-Bezgłowy start (uruchamia się bez okienka lub zamkniecie go nie powoduje wyłączenia maszyny),
+-Oddzielny start
+Wybieramy zwykły start i staramy się trafić w okno maszyny, klikamy przechwyć, a następnie wciskamy F12
+
+Opcje, które wyświetlają się na ekranie VirtualBoxa
+
+Detected hard disk:
+AHCI controler:
+-Hard disk (system operacyjny uruchomi się z pierwszego dysku twardego),
+-CD-ROM - montaz z napędu,
+-Floppy - obraz instalowany z dyskietki,
+-LAN - opcja uruchamiania przez sieć,
+-continue booting - uruchomi się z domyślnego dysku twardego
+Wybieramy opcję montażu z napędu
+
+Pojawia nam się menu z 6 możliwościami do wyboru:
+-Graphical install (instalator graficzny),
+-Install (w trybie tekstowym),
+-Advanced options (zaawansowane opcje),
+-Accessible dark contrast installer menu (instalator z kontrastowymi kolorami dla osób z problemami ze wzroekiem),
+-Help
+-Install with speech synthesis (instalacja z dźwiękami),
+
+Wybieramy Install, następnie kolejno -> język angielski -> region: Europe -> Poland -> język United States -> klawiatura
+ American English
+
+Następnie podajemy nazwę systemu wewnątrz maszyny wirtualnej -> Domain pozostawiamy bez zmian ->
+Root password (ustawiamy hasło administratora, które powinno być długie i trudne) -> ponawiamy hasło -> 
+Podajemy nazwę użytkownika (może zawierać duże litery) -> Login użytkownika (może zawierać tylko małe litery) ->
+Podać oraz powtórzyć hasło użytkownika
+
+Partycjonowanie
+-Guided-use entire disk (kreator tworzący projekt partycji)
+-Guided-use entire disk and set up LVM (dynamiczne zarządzanie dyskami)
+-Guided-use entire disk and set up encrytphed LVM (z dodatkowym szyfrowaniem danych)
+-Manual (partycjonowanie ręczne)
+
+Wybieramy Guided partitioning -> Guided-use entire disk -> "nazwa naszego dysku" -> a następnie czyścimy propozycję partycji ->create nwe partcion -> podajemy rozmiar partycji -> primary -> begining
+
+Opcje:
+Use as (system jaki ma być zainstalowany) -> done setting up the partition -> tworzymy następną partycje jeśli trzeba
+Use as:
+Ext4 (jest szybszy od Ext3)
+Ext3 (bezpieczniejszy od Ext)
+Ext2 (szybszy od Ext3)
+
+Następnie wybieramy swap arena -> zapisujemy zmiany na dysku -> wybieramy serwer,  z którego będą pobierane pakiety ->
+software selection (dwie ostatnie opcje pozostają włączone) -> lokalizacja systemu -> wybór dysku twardego -> automatyczny
+restart maszyny wirtualnej -> wybieamy Debian GNU/Linux
+
+Podajemy login i hasło użytkownika
+Skrótem klawiszowym ALT+F2 przechodzimy na kolejną konsole logujemy się jako root -> polecenie apt-get update aktualizuje listępakietów
+Wpisujemy exit aby się wylogować
