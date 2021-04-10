@@ -1,0 +1,49 @@
+Instalacja Debian
+1) Musimy wejść na strone internetową Debian(www.debian.org)
+2) Pobieramy plik, który się znajduję na glównej stronie (ale można to zrobić innym sposobem, na dole można zobaczyć przycisk "Więcej" i tam się znajdują formaty do pobrania Debian)
+3) Jak pobraliśmy to, zaczynamy instalację:
+	1. Uróchomiamy "VirtualBox".
+	2. Robimy nową maszyne, podajemy nazwe(w moim przypadku to będzie "Debian")
+	3. Ustawijamy typ "Linux" i wersiję "Debian" (Jak w nazwie napiszesz jak ja "Debian", to typ i wersiję ustawie ci automatycznie).
+	4. Klikamy "Dalej" i teraz ustawiamy pamięć RAM (Ja standartowo urzyłem 2048Mb)(Jeszcze chcę napisać że musimy ustawiać pamięć tak żeby było 1024, 2048, 4096... ,a nie 1112,2590,4766... ,bo póżniej będą problemy).
+	5. Póżniej przechodzimy dalej i tworzymy nowy wirtualny dysk twardy.
+	6. Przechodzimy dalej i widimy 6 opcji(Wybieramy VDI):
+   		1) VDI (VirtualBox Disk Image) - format specyficzny dla VirtualBox.
+   		2) VMDK (Virtual Machine Disk)- format używany przez oprogramowanie do wirtualizacji "VmWare"
+   		3) VHD (Virtual Hard Disk) - format używany przez "Microsoft Virtual PC"
+   		4) HDD (Parallels Hard Disk) - format używany przez komercyjne oprogramowanie "Parallels Workstation" firmy "Parallels, Inc".
+   		5) QED (QEMU enhanced disk) - format specyficzny dla maszyny wirtualnej (KVM) bazującej na jądrze Linuxa
+   		6) QCOW (QEMU Copy-On-Write) - format stosowany w celu uzyskania wirtualnej przestrzeni dyskowej. Mechanizm ten pozwala na znaczne zmniejszenie wymaganej przestrzeni dyskowej w sytuacji, gdy ten sam obraz dysku twardego wykorzystywany jest przez wiele maszyn wirtualnych oraz przyczynia się do zwiększenia wydajności, gdyż odczyty z dysku są przechowywane w pamięci cache znajdującej się w RAM i z tej pamięci serwowane są żądania kolejnych odczytów pochodzące od innych maszyn wirtualnych.
+	7. Następny krok ma dwie opcję: 
+		1) Dynamicznie przedzielany(Wybiramy ten) - to znacze że po trochu będzie rezerwował pamięć dysku wirtualnego.
+		2) Stały rozmiar - a tu odrazu ją zarezerwuję.
+	8. Póżniej lokalizujemy plik i wstawiamy rozmiar(ja wstawiłem 16GB)
+	9. Przychodzimy do "Ustawięń" i wchodzimy do "System" (na wkładce "Płyta główna" w "Kolejności bootowania" ustawiamy tak żeby został tylko "Dysk twardy" )
+	10. We wkładce "Procesor" możemy wstawić 2 CPU i tu nic więcej nie zmieniamy.
+	11. I teraz przechodziemy do "Pamięć" żeby załadować ten plik który pobraliśmy z internetu.
+I teraz urochomiamy tą maszyne: 
+	1. Póżniej naciskamy F12 żeby(w siągu urochomienia oczewiścze) żeby przejść do opcij  (podobnego do BIOS)
+	2. Lepiej urzywać w języku angielskim wszystko co dotyka kompótera(bo póżniej możesz mieć dużo problem) 
+	3. Region wybiramy z powodu lokalizowania serweru.
+	4. Wybieramy klawiature którą masz (ale bardziej popólarna Amerykan English)
+	5. Na tym kroku miałem problem z programą, ale za dopomogą wykładowcy wszystko zrobiłem(problem polega na to że nie zmieniłem Śieć na NAT).
+	6. Póżniej idźie Hostname imię serwera.
+	7. Nadał mamy Domian name które muwię o imię częśći Internet adresa(Możemy tam nic nie wpisywać)
+	8. Nadał hasło administratora (root)
+	9. Podtwierdiliśmy hasło root 
+	10. Imię urzytkownika
+	11. Hasło i podtwierdzenie hasła.
+	12. A nadał jest wszystko opisane w języku angielskim(tylko musisz uważnie czytać)
+Przechodzieme do pobierania niekturych plików za dopomogą komędy apt-get update
+	1. apt-get update - ta komęda pozwala nam instalować. 
+	2. apt-get update nazwa_pakietu - za pomocą tej komędy możemy zainstalować co kolwiek.
+	3. opcja która wychodzie na Linuksie "Czy jestesz pewny że chcesz iść nadał (Y/n) "
+		1) Jak nie to wciskasz n
+		2) Jak tak to po prostu Enter
+	4. apt search aptitude - pokazuję zainstalowane...
+	5. aptitude search aptitude - wyświetla liste i pokażuję:
+		1) i - zainstalowane
+		2) v - virtualne
+		3) p - niezainstalowane
+	6. Za pomocą komędy tasksel możemy wrucicz do menu instalacji systemy i doinstalowacz pare rzecy jak tego potrzebujemy.
+	7. Można wpisacz komęde aptitude i nas przerzucze na takij na pól graficzny interface w którym możemy szukać co kolwiek, dla tego żeby wyświetlić panel do poszukiwania musimy wcisnąć ? (znak pytania ale bez Shift)
