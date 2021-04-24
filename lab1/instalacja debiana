@@ -1,0 +1,16 @@
+1. wybrnaie języka
+2. wybranie lokalizacji (strefa czasowa, pobieranie locale)
+3. wybranie układu klawiatury
+4. konfiguracja sieci i domeny, wybranie nazwy hosta
+5. utworzenie partycji:
+5.1 swap (do 2gb)
+5.2 root z zagniężdżoną partycją home
+5.3 partycja boot z zagnieżdżonym punktem bootwania /boot
+6. ustawienie hasła administratora tj usera root
+7. konfiguracja danych logowania i nazwy dla nowego użytkownika
+8. ustawienie menadżera pakietów z nośnika lub do pobrania z internetu
+8.1 wybranie serwera lustrzanego do pobieranie pakietów (wdg. kraju i najlepszego połączenia)
+ew. ustawienie proxy
+9. możliwość wybrania opcji instalacji gui lub innych usług
+10. instalacja grub boot loadera
+11. reebot do zainstalowanego systemu
