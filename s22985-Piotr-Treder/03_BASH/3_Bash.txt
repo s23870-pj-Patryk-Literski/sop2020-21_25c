@@ -1,0 +1,22 @@
+Warunek if 
+
+if [ warunek ] <- spacje pomiędzy nawiasami są konieczne !
+then
+...
+elif [ warrunek ]
+then
+...
+else 
+...
+fi
+
+Cwiczenie 1:
+
+
+
+#!/bin/bash
+
+if [ $# -gt 1 ]; then
+    echo $1;
+else echo nie podano parametrów;
+fi
