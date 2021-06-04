@@ -1,0 +1,28 @@
+ubuntu@bss-ubu1804:~$ ls -l
+total 32
+drwxr-xr-x 4 ubuntu ubuntu 4096 Mar 26 00:03 Desktop
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Documents
+drwxr-xr-x 2 ubuntu ubuntu 4096 Feb  9 21:41 Downloads
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Music
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Pictures
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Public
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Templates
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Videos
+
+ubuntu@bss-ubu1804:~$ echo $X
+total 32 drwxr-xr-x 4 ubuntu ubuntu 4096 Mar 26 00:03 Desktop drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25 2019 Documents drwxr-xr-x 2 ubuntu ubuntu 4096 Feb 9 21:41 Downloads drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25 2019 Music drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25 2019 Pictures drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25 2019 Public drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25 2019 Templates drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25 2019 Videos
+ubuntu@bss-ubu1804:~$ 
+
+ubuntu@bss-ubu1804:~$ 
+ubuntu@bss-ubu1804:~$ echo "$X" //w bashu ma znaczenie czy sa zapisane w cudzysłowiu czy tez nie. Wplywa to na roznice wyswietlania wartosci!.
+total 32
+drwxr-xr-x 4 ubuntu ubuntu 4096 Mar 26 00:03 Desktop
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Documents
+drwxr-xr-x 2 ubuntu ubuntu 4096 Feb  9 21:41 Downloads
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Music
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Pictures
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Public
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Templates
+drwxr-xr-x 2 ubuntu ubuntu 4096 Aug 25  2019 Videos
+ubuntu@bss-ubu1804:~$ 
+
