@@ -1,0 +1,327 @@
+-------------------------------------------------------------
+Cwiczenia 1
+-------------------------------------------------------------
+Skrypt sprawdzajacy czy podano wiecej niz jeden
+parametr:
+
+zad_01.sh
+
+#!/bin/bash
+
+if [ $# -gt 1 ]; then
+	echo "$1";
+fi
+
+chmod u+x zad_01.sh
+
+Wywolanie:
+np. ./zad_01.sh 1 1
+
+------------------------
+
+Skrypt sprawdzajacy czy istnieje plik config.cfg w biezacym
+katalogu:
+
+zad_02.sh
+
+#!/bin/bash
+if [ -f config.cfg ]; then
+	./config.cfg
+elif [ $# -gt 0 ]; then
+	./$1
+else
+	echo "blad"
+fi
+
+chmod u+x zad_02.sh
+
+Wywolanie:
+Najpierw nalezy stworzyc byle jaki skrypt
+np. touch przyklad2, wpisac w nim tresc ktora
+sie wykona np.:
+
+#!/bin/bash
+
+echo "$0"
+
+chmod u+x przyklad2
+
+Przy wywolywaniu wpisac:
+
+./zad_02.sh przyklad2
+
+Bedzie wywolywal ten plik
+
+Gdy skopiujemy zawartosc pliku przyklad2 do
+pliku config.cfg (polecenie cp przyklad2
+config.cfg) to skrypt bedzie potwierdzial 
+obecnosc pliku config.
+
+------------------------
+
+Skrypt sprawdzajacy czy jego nazwa konczy
+sie na .sh, jesli nie to dodaje to rozszeczenie.
+
+1. Stworzyc plik np. zad_03.abc z zawartoscia:
+
+#!/bin/bash
+
+echo $0
+
+
+2. Nadac mu uprawnienia chmod u+x
+
+3. Stworzyc 3 katalogi w obecnym np.
+
+mkdir -p a/b/c
+
+4. Wejsc do katalogu c.
+
+5. Zmienic skrypt na sprawdzajacy czy dany plik
+ma rozszerzenie sh a jak nie to je dodaje, tj.:
+
+#!/bin/bash
+
+nazwaPliku=$(basename ${0})
+samaNazwa=${nazwaPliku%.*}
+samoRoz=${nazwaPliku##*.}
+
+if [ ${samoRoz} != "sh" ]; then
+	mv ${0} ${0}.sh
+fi
+
+Dzieki temu przy wywolaniu plik zad_03 (jak i kazdy
+inny bez rozszerzenia .sh) zmieni sie na plik z 
+rozszerzeniem .sh.
+
+------------------------
+
+Skrypt, sprawdzajacy czy w katalogu jest wiecej niz
+5 plikow.
+
+
+#!/bin/bash
+
+
+if [ $(ls -l | grep -e ^- | wc - l) -gt 5 ]; then
+	echo "Jest wiecej niz 5 plikow"
+fi
+
+chmod u+x zad_04.sh
+
+W przypadku gdy jest wiecej niz 5 plikow wyswietli sie
+wlasciwy komunikat ze skryptu.
+
+-------------------------------------------------------------
+Cwiczenia 2
+-------------------------------------------------------------
+
+Skrypt wypisujacy liczby od 10 do 1 co 2:
+
+#!/bin/bash
+for (( liczba=10; liczba>0; liczba-=2 ))
+do
+	echo -n "$counter "
+done
+printf "\n"
+
+-----------------------
+Skrypt wypisujacy wszystkie argumenty wywolania skryptu:
+
+#!/bin/bash
+
+for i in $*; 
+do
+	echo $i
+done
+
+Inne przykladowe formy, ktore znalazlem w sieci:
+
+ #!/bin/bash 
+echo $@ 
+
+----------------
+
+ #!/bin/bash 
+ 
+while (( "$#" )); do 
+  echo $1 
+  shift 
+done
+
+-----------------------
+Skrypt wypisujacy liste plikow i katalogow biezacego katalogu
+poprzedzajac kazda nazwe pliku tekstem "Patrzcie Panstwo, oto plik: ":
+
+#!/bin/bash
+
+files=$(ls -l)
+IFS=$'\n'
+for f in $files;
+do
+	echo "Patrzcie Panstwo, oto plik: $f"
+done
+
+Po odpaleniu skryptu ukazuje mi sie lista linijek, kazda z nich zaczyna
+sie od slow "Patrzcie Panstwo, oto plik: " dalej widze takie rzeczy
+jak uprawnienia, data i czas stworzenia czy tez nazwa pliku.
+
+WAŻNE:
+W przypadku tego skryptu musialem uzyc zgodnie z zaleceniem
+internal field separator - separator pol wejsciowych, ktory
+pozwala na wyznaczenie np. okreslonego znaku do oddzielania, w
+tym przypadku oddzielamy jeden plik/katalog od drugiego w biezacym
+katalogu.
+
+-----------------------
+Skrypt wykonujacy dla kazdego pliku w biezacym katalogu ktory ma rozszerzenie
+.c wykona taka komende:
+
+    cc (tunazwapliku) -o (tunazwaplikubezrozszerzenia)
+
+
+#!/bin/bash
+
+files=$(ls -l)
+for f in $files;
+do
+	NAME="${f%.*}"
+	EXT="${f##*.}"
+	if [[ ${EXT} == "c" ]]; then
+		cc $f -o $NAME
+	fi
+done
+
+Przy wykonaniu tego skryptu skorzystalem z podpowiedzi pozostawionej
+przez Pana Tadeusza - tj. przykladowe pliki do potestowania ":-)"
+
+-----------------------
+Skrypt wczytujacy liste plikow do wypisania z wiersza polecen, a
+nastepnie wypisze ich zawartosci raz w kolejnosci od poczatku do konca,
+a raz na odwrot:
+
+#!/bin/bash
+
+for a in "$@";
+do
+	cat "${a}"
+	tac "${a}"
+done
+
+Po odpaleniu skryptu wyswietla mi najpierw powyzsza jego zawartosc
+po czym na dole po odsepie mam wyswietlone to samo ale na odwrot tj.
+zaczyna sie od done i idzie w gore - tac...,cat... itd.
+
+WAZNE:
+Dodatkowo mozna uzyc w takiej funkcji " | rev" - dodanie tego po tac
+odwroci jeszcze kolejnosc liter tj. zamiast done bedziemy mieli enod
+itp.
+Dodatkowo skrypt ten przypomnial mi, jak wazne sa odstepy miedzy czesciami
+skryptu - zablokowalem sie na tym jednym zadaniu tylko dlatego, ze nie
+zrobilem odstepu miedzy cat i tac a "${a}", musze o tym pamietac.
+
+-------------------------------------------------------------
+Cwiczenia 3
+-------------------------------------------------------------
+Skrypt z funkcja, ktora bedzie wypisywala tekst pokolorowany na zadany
+kolor. Niech funkcja ta przyjmuje dwa argumenty - tekst i kolor:
+
+#!/bin/bash
+
+fun_col() {
+	color=$1
+	text=$2 $3 $4
+
+echo -e "\e[$1m$2\e[0m"
+
+}
+
+fun_col $1 $2 $3 $4
+
+Funkcje tradycyjnie wywolujemy "./fun_col" po czym
+dodajemy obydwa argumenty np 35 Systemy Operacyjne PJATK
+wyswietli nam napis Systemy Operacyjne PJATK na purpurowo.
+
+-----------------------
+
+Funkcja rekurencyjna obliczajaca ciag Fibonacciego:
+
+#!/bin/bash
+
+fibonacci() {
+	if [ $1 -le 1 ]
+	then
+		echo $1
+	else
+		echo $[ `fibonacci $[ $1 - 1 ]` + `fibonacci $[ $1 - 2 ]` ]
+	fi
+}
+
+Po odpaleniu mozemy podac liczbe i otrzymujemy informacje
+zwrotna np.:
+fibonacci 0
+0
+fibonacci 1
+1
+...
+fibonacci 10
+55
+fibonacci 15
+610
+
+-------------------------------------------------------------
+ZADANIE DOMOWE
+-------------------------------------------------------------
+Wyrazenie regularne sprawdzajace, czy tekst jest poprawnie
+napisanym polskim imieniem:
+
+#!/bin/bash
+
+name=$(echo $1 | tr -d '[A-Z]' | tr -d '[0-9]' | tr -d '[:space:]' | tr -d '[:punct:]')
+	if [[ "$name" == "${1:1}" && ${#name} != 0 ]]; 
+		then echo "Poprawne imie"
+	else echo "Niepoprawne imie"
+fi
+
+
+Po nadaniu uprawnien i odpaleniu nalezy podac imie, np.
+Andrzej i dostaniemy informacje zwrotna, ze jest to poprawne
+imie, w przypadku gdybysmy wpisali np. Ćććć wypisze nam
+informacje, ze jest niepoprawne.
+
+-----------------------
+
+Wyrazenie regularne sprawdzajace czy tekst jest kodem pocztowym:
+
+#!/bin/bash
+
+echo $1 | grep -qE '^[0-9]{5}(-[0-9]{4})?$' 
+
+if [ $? -eq 0 ]; then
+	echo "Poprawny kod pocztowy."
+else
+	echo "Niepoprawny kod pocztowy."
+fi
+
+Po nadaniu uprawnien i odpaleniu nalezy podac kod pocztowy, np.
+80123 - zrobilem zgodnie z zaleceniami tj by "tekst" konczyl i 
+zaczynal liczba, da sie to jeszcze usprawnic poprzez danie myslnika
+tak by kod wpisywac normalnie tj. 80-123
+
+-----------------------
+
+Wyrazenie regularne sprawdzajace e-mail:
+
+#!/bin/bash
+
+if [[ $1 =~ .*[@].*[.].* ]]; then
+	echo "Poprawny mail"
+else
+	echo "Niepoprawny mail"
+fi
+
+Po nadaniu uprawnien i odpaleniu nalezy podac mail, np.
+szymstef@cos.pl bedzie poprawne, ale szymstef.pl bedzie
+niepoprawne.
+-----------------------
+
