@@ -1,0 +1,15 @@
+Na zajęciach ze Skryptów nauczyliśmy robić if, pętle funkcje(chocza z funkcjami mi nie bardzo posło)
+Ale to znaczy że jest miejsce do wysiłku,  poznaliśmy taką komęde jak seq.
+Przykład seq:
+ jeśli napiszemy seq 1 10 
+to nam wypiszę liczby od 1 do 10 w jednej kołómnie(to znacze każdą liczbe z nowego wiersza)
+jeśli napiszemy seq 1 10 2 
+to będzie liczyć co 2 liczbe. 
+Jeszcze nowym dla mnie było operatory binarne w if:
+-eq równa się [ "$a" -eq "$b" ]
+-ne nie jest równe [ "$a" -ne "$b" ]
+-gt jest większe, niż [ "$a" -gt "$b" ]
+-ge większe lub równe  [ "$a" -ge "$b" ]
+-It jest mniejsze, niż [ "$a" -It "$b" ]
+-Ie jest mniejsze lub równe [ "$a" -Ie "$b" ]
+Dzięki komędam sed i awk, bo można zrobić regularne wyrażenie (ale to też muszę przećwiczyć żeby do końca dopisać domowe zadanie)

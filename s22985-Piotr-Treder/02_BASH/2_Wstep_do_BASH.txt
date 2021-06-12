@@ -1,0 +1,159 @@
+pierwszyą linią kodu będzie 
+
+#!/bin/bash <- co oznacza, że programem interpretującym poniższy skrypt będzie bash. 
+
+skrypt zapisaujemy z rozszerzeniem .sh 
+
+po zapisaniu ustawiamy chmod na u+x
+
+i skrypt działa 
+
+Ćwiczenie 1:
+
+Napisz skrypt wyświetlający na terminalu tekst "Witamy w terminalu". 
+Skorzystaj z komendy echo oraz informacji podanych powyżej. 
+Pamiętaj o atrybutach i o tym jak się wywołuje programy. Prowadzący podpowie.
+
+Skrypt został umieszczony w folderze
+
+ubuntu@bss-ubu1804:~/Desktop/SOP/sop2020-21_25c/s22985-Piotr-Treder/02_BASH$ ./cwiczenie1.sh 
+ Witamy w terminalu 
+
+
+Zmienne powłoki 
+
+Można stosować Zmienne dla wartości 
+
+wystarczy wpisać ZMIENNA=wartość 
+np X = 5
+
+żeby odwołać się do zmiennej następująco : 
+$X 
+lub ${X} 
+klamy są stosowane do tego kiedy zmienna ma w nazwie cyfry ( np ${X1} )
+lub wtedy kiedy zmienną jest tablica. 
+
+Ćwiczenie 2: 
+
+wpisując: 
+#!/bin/bash
+
+X=tekst
+echo $X
+bash
+echo $X
+
+tylko raz na terminalu wyświetla się zmienna X 
+
+bash w skrypcie oznacza wywołanie kolejnego basha, 
+w którym to nie wyświetli się zmienna X ponieważ 
+nie została nigdzie eksportowana 
+do tego służy -> export ( expost służy do ustawienia
+zmiennej środowiskowej. Po wykonaniu tej operacji 
+dowolna splikacja uruchomiona z poziomu bieżącego 
+skryptu powłoki otrzyma tę zmienną )
+
+
+
+po przypisaniu do X=tekst dłuższy do zmiennej nie przypiszą sie
+oba słowa. potrzebne jest wpisanie X="tekst dłuższy"
+problemem był biały znak pomiędzy słowami. Wtedy kompilator 
+nie wie co robić i wyrzuca błąd 
+
+w przypadku 
+
+X="Tekst 1"
+Y="tekst:$X"
+echo "$Y"
+Y='tekst:$X'
+echo "$Y"
+Y=tekst:$X
+echo "$Y"
+
+różnica pomiędzy apostrofem a cudzysłowiem jest taka, 
+że kiedy chcemy wyświetlić tekst razem z wartością zmiennej 
+używamy "" a apostrof wyświetla to co jest w apostrofie
+Cytat z książki :
+Gdy polecenia echo użyje się z apostrofami, umieszczne w nich
+zmienne nie będą iterpretowane przez program bash, lecz zostaną
+wyświetlone w niezmienionej postaci 
+-> zmienna $var nie zostanie rozwinięta - to oznacza,
+że polecenie $ echo '$zmienna' zwróci łańcuch tych znaków
+natomiast polecenie $ echo $zmienna zwróci wartość zmiennej
+$zmienna ( jeśli ją zdefiniowano ) lub niczego nie zwróci 
+jeśli zmiennej nie określono. 
+" Skrypty powłoki systemu linux - receptury " ~ Sarath Lakshman
+
+
+Ćwiczenie 3
+
+echo "PATH: "$PATH          # 
+echo "RANDOM: "$RANDOM      # losowa liczba
+echo "PWD: "$PWD            # przechowuje aktualną ściezke pliku
+echo "PS1: "$PS1            # Prompt String One
+echo "USER: "$USER          # login użytkownika
+echo "HOSTNAME: "$HOSTNAME  # nazwa naszego hosta
+echo "OSTYPE: "$OSTYPE      # Rodzaj systemu operacyjnego
+ 
+# $PATH - po wpisaniu polecenia do wykonania
+# powłoka automatycznie szuka pliku wykonywalnego 
+# na liście katalogów zmiennej środowiskowej PATH 
+
+w bashu pod zmienne można przypisać nie tylko liczby stringi 
+itp. Można też przypisać do zmiennej jakąś komende 
+
+Cwiczenie 4
+rozwiązaniem problemu było zastosowanie takiego skryptu
+
+zmienna x przechowuje komende w odwrotnych apostrofach 
+( backticks ) <- służy ona do tego żeby zinterpretować 
+łańcuch tekstu jako komende 
+
+
+
+#!/bin/bash
+
+X=`ls -l`
+
+
+echo "$X"
+_____________________________________________________
+
+Cwiczenie 5 
+
+#!/bin/bash
+
+A=Ala
+
+echo $A ma kota, a kot ma ${A:0:2}ę
+
+${A:0:2}ę <- oznacza to : podciąg znaków rozpoczynający się od 0 znaku do 2 i 
+dodanie " ę " na końcu 
+
+Ćwiczenie 6 
+Zastosowałem metode if bo nie mialem pomysłu jak 
+inaczej to zrobić
+
+#!/bin/bash                 
+echo 'Podaj imię'               
+read var              # 
+X=${#var}             # do zmiennej X przypisujemy liczbe znaków var
+Y=a                   # żeńskie imie zazwyczaj kończy się na 'A'
+#echo ${#X}             
+#echo ${var:X-1:X}    # ostatnia litera srtingu var
+
+if [ ${var:X-1:X} == $Y ]; then # jeżeli ostatnia litera równa się a 
+    echo $var ma kota, a kot ma ${var:0:X-1}ę # usuwamy ostatnią literę, dodajemy 'a'
+else #[ ${var:X-1:X}!=$Y ] 
+     echo $var ma kota, a kot ma ${var}a
+fi
+
+echo ' Wprowadź tekst '
+read var2
+X2=${#var2} 
+echo '1. Pierwszy znak z argumentu'
+echo ${var2:0:1}
+echo '2. Ostatni znak z argumentu'
+echo ${var2:X2-1:X2}
+echo '3. Zamiana tekstu'
+echo -e "${var2//'SOP'/\\e[32mSOP\\e[0m}"

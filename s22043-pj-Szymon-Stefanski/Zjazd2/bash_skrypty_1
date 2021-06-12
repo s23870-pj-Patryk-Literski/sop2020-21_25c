@@ -1,0 +1,296 @@
+
+---------------------------------------------------------------------
+CWICZENIE 1
+---------------------------------------------------------------------
+Polecenie:
+
+Napisz skrypt wyswietlajacy na terminalu tekst "Witamy w terminalu". 
+Skorzystaj z komendy echo oraz informacji podanych powyzej. Pamiętaj 
+o atrybutach i o tym jak sie wywoluje programy.
+------------
+Wykonanie:
+
+Tworze plik o nazwie kroliczek poprzez ponizsza komende:
+
+nano kroliczek.sh
+
+Do niego nalezy wpisac/skopiowac:
+#!/bin/bash
+
+# Skrypt wykorzystuje zaawansowane funkcje 
+# systemu do tego, aby narysowac kroliczka:
+echo -e "    \e[m(\\_/)"
+echo -e "   (=\e[33m'\e[31m.\e[33m'\e[0m=)"
+
+Nastepnie nalezy nadac uprawnienia do wykonywania ponizsza komenda:
+
+chmod u+x kroliczek.sh
+
+UWAGA - przy kopiowaniu ze strony nalezy uwazac na biale znaki!!!
+------------
+Odpalenie skryptu:
+
+./kroliczek.sh
+
+Skrypt wyswietla nam glowe kroliczka.
+------------
+Podsumowanie:
+
+Szczerze mowiac pierwszy raz odpalilem jakikolwiek skrypt w bashu,
+mysle ze bede musial w wolnej chwili poczytac o nich wiecej.
+Musze pamietac by umieszczac na poczatku kazdego skryput znak hash,
+wykrzyknik, a następnie nazwę programu interpretera - w tym przypadku
+jest to komenda "#!/bin/bash".
+
+
+
+---------------------------------------------------------------------
+CWICZENIE 2
+---------------------------------------------------------------------
+Polecenie:
+
+Napisz skrypt wyswietlajacy na terminalu tekst "Witamy w terminalu". 
+Skorzystaj z komendy echo oraz informacji podanych powyzej. Pamiętaj 
+o atrybutach i o tym jak sie wywoluje programy.
+------------
+Wykonanie:
+
+Na początku wpisałem do konsoli:
+
+X=tekst <--- zmiennej X przypisywana jest wartosc "tekst"
+echo $X <--- wywoluje zmienna X, na ekranie widnieje napis "tekst"
+bash    
+echo $X <--- zmienna X jest pusta, jak rozumiem polecenie "bash"
+	     przywraca pierwotny stan i usuwa przypisanie
+
+Potem wpisalem do konsoli:
+
+X="Tekst 1"
+Y="tekst:$X"
+echo "$Y"    <--- zmienna Y przechowuje po za sama soba tez zmienna X
+Y='tekst:$X'
+echo "$Y"    <--- zmienna Y wypisze tylko tekst:$X
+Y=tekst:$X
+echo "$Y"
+
+Roznica miedzy uzyciem apostrofow i cudzyslowow jest taka, ze
+w przypadku tych pierwszych bieze sie pod uwage tylko biezace
+przypisanie a w przypadku cudzyslowow nastepuje rozwiniecie.
+
+Ostatnia czescia zadania bylo wpisanie do konsoli:
+
+A=Ala
+echo $A ma kota, a kot ma ${A}e
+
+Ostatnia komenda wyswietla komunikat "Ala ma kota, a kot ma Alae"
+dzieje sie tak z powodu przypisania zmiennej A wartosci Ala,
+w drugiej czesci polecenia echo mamy sytuacje gdzie zmienna zapisana
+jest w klamrach co powoduje, ze zostanie wyswietlona wraz ze
+znajdujaca sie zaraz za nia literka e.
+------------
+Podsumowanie:
+
+Osobicie najbardziej zainteresowala mnie roznica pomiedzy uzywaniem
+apostrofow a cudzyslowow w bashu - chwila rozkojarzenia i uzycie
+bardzo podobnych znakow daje kompletnie inne efekty niz uzycie tych
+prawidlowych.
+
+
+
+---------------------------------------------------------------------
+CWICZENIE 3
+---------------------------------------------------------------------
+Polecenie:
+
+Zobacz co przechowują zmienne:
+
+PATH
+RANDOM
+PWD
+PS1
+USER
+HOSTNAME
+OSTYPE
+
+------------
+
+Wykonanie:
+
+Wpisałem do konsoli:
+
+echo $PATH      <--- wyswietla liste katalogow w ktorych beda szukane polecenia
+echo $RANDOM    <--- wyswietla wartosc losowa np. 22746, 27822... 
+echo $PWD       <--- wyswietla biezaca lokalizacje
+echo $PS1       <--- wyswietla zmienna przechowujaca specjalne znaki/domyslana 
+	             strukture basha
+echo $USER      <--- wyswietla nazwe uzytkownika np. nr indeksu  
+echo $HOSTNAME  <--- wyswietla nazwe serwera
+echo $OSTYPE    <--- wyswietla nazwe systemu np. linux-gnu
+
+------------
+Podsumowanie:
+
+Na pewno w temacie zmiennych musze zapamietac, ze:
+    $*, $@ - to wszystkie argumenty skryptu
+    $0 - to nazwa skryptu
+    $1, $2, ... - to kolejne argumenty skryptu
+    $? - to kod zakończenia ostatniego polecenia
+    $$ - to PID procesu bieżącej powłoki
+
+
+
+
+
+---------------------------------------------------------------------
+CWICZENIE 4
+---------------------------------------------------------------------
+Polecenie:
+
+Wykonaj komendę ls -l w podpowłoce i przypisz ją do zmiennej X.
+Wyświetl zawartość tej zmiennej.
+Spraw, aby nie było różnicy (co najwyżej kolorki) między zwykłym wykonaniem komendy:
+
+ls -l
+
+------------
+Wykonanie:
+
+Tradycyjne uzycie echo $X sprawia, ze dostajemy zawartosc komendy, ale
+nie jest to zbyt czytelne.
+
+Mi pomogla taka forma zapisu:
+
+X= "$(ls -l)" <--- dzieki niej ls -l wyswietla sie prawidlowo ale bez kolorow
+
+------------
+UWAGA:
+
+Zwykle przypisanie X= "ls -l" nic nie da, jesli chcemy wprowadzic sama
+komende nalezy uzyc formy: X= $(ls -l).
+
+------------
+Podsumowanie:
+Trzeba ostroznie dobierac forme przypisania w zaleznosci od potrzeby.
+
+
+
+
+---------------------------------------------------------------------
+CWICZENIE 5
+---------------------------------------------------------------------
+Polecenie:
+
+Pamiętasz jedno z zadań poprzednich?
+
+A=Ala
+echo $A ma kota, a kot ma ${A}ę
+
+Przerób je tak, aby tekst wypisywał się poprawnie.
+
+Napisz skrypt, który będzie wypisywał taki tekst także dla imion męskich. 
+Pomijamy zdrobnienia i imiona które się dziwnie odmieniają (na przykład Marek). 
+Niech skrypt ten przyjmuje jeden argument - imię.
+
+------------
+Wykonanie:
+
+W przypadku Ali nalezy zmienic w wierszu echo:
+echo $A ma kota, a kot ma ${A/a/e}
+
+W przypadku skryptu skorzystałem z takiej formy:
+
+#!/bin/bash
+
+echo $1 ma kota, a kot ma ${1}a
+
+Przy odpalaniu skryptu w konsoli nalezy podac argument w cudzyslowie np.
+./skrypt.sh "Jakub" <--- w przypadku takiego argumentu wyswietli sie nam
+komunikat: Jakub ma kota, a kot ma Jakuba. Skorzystalem z prostej formy
+skryptu zakladajac, ze wiekszosc meskich imion w jezyku polskim w
+dopelniaczu nie zmienia wczesniejszej formy tylko na koncu dodajemy litere
+a np. Jakub - Jakuba, Stefan - Stefana, Andrzej - Andrzeja itp
+
+Ostatnia czescia cwiczenia jest napisanie skryptu, który wczyta jako 
+argument jakis tekst. Skrypt ten wypisze kolejno:
+
+    Pierwszy znak z argumentu
+    Ostatni znak z argumentu
+    Zamieni w argumencie tekst SOP na tekst poniżej (zastosuj echo z przełącznikiem -e):
+	\\e[32mSOP\\e[0m
+
+Moj kod wyglada tak:
+
+#!/bin/bash
+
+echo$1
+echo Pierwsza litera argumentu to ${1:0:1}
+echo Ostatnia litera argumentu to ${1:4:5}
+
+W powyższym przypadku najpierw wywoluje zmienna wpisana przez uzytkownika,
+dla ulatwienia zalozylem ze uzytkownik wpisze 5 literowe slowo np. tekst
+dlatego tez pierwsza i ostatnia litera tego argumentu beda litery t.
+
+Potem mozemy dodac na koniec:
+echo -e "\\e[32SOP\\e[0m"
+
+
+W przypadku wywolania echa z przelacznikiem -e ostatnia litera argumentu
+przestaje mi sie wywietlac prawidlowo, dodatkowo po wywolaniu tego echa
+nastepuje dlugi bialy znak, ktory konczy sie dopiero kilka linii nizej
+literami OP.
+
+------------
+Podsumowanie:
+Na pewno jeszcze dluga droga przedemna ale coraz bardziej zaczynam rozumiec
+skrypty.
+
+
+
+
+
+---------------------------------------------------------------------
+CWICZENIE 6
+---------------------------------------------------------------------
+Polecenie:
+
+W tym cwiczeniu wykorzystujac wiedze na temat wyrazen regularnych musze
+zrobic wczesniejsze wywolanie Ala ma kota, kot ma Alae tylko bez bledu.
+
+------------
+Wykonanie:
+
+Wpisalem komende:
+echo Ala ma kota, kot ma Ala | sed s/a$/e/g | sed 's/\([^e]\)$/\1a/g'
+
+wyswietlilo prawidlowo: Ala ma kota, kot ma Ale
+
+Podsumowanie:
+Warto zwrocic uwage w wywolaniu na slowo "sed" jest to polecenie
+pozwalajace na przetwarzanie wyrazen.
+
+
+
+
+----------------------------------------------------------------------
+ZADANIE DOMOWE
+----------------------------------------------------------------------
+Polecenie: 
+
+Przygotuj skrypt, który odczyta plik (jego nazwa ma być argumentem skryptu) 
+i wypisze go na terminalu tak, aby wszystkie wystąpienia Twojego imienia były 
+podświetlone na czerwono.
+
+------------
+Wykonanie:
+
+1. Utworzylem najpierw plik z lista nazwisk, gdzie wpisalem rowniez swoje pisane
+duzymi jak i malymi literami.
+
+2. Utworzylem skrypt:
+#!/bin/bash
+A=$(sed 's/stefanski/\\e[31mSTEFANSKI\\e[30m/gi' $1)
+echo -e $A
+
+3. Nalezy nadac uprawnienia do skryptu tj. chmod u+x.
+
+4. Po wywolaniu prawidlowo wyswietla moje nazwisko w kolorze czerwonym.
