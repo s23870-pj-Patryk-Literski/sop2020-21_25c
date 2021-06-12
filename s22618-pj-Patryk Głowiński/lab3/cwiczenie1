@@ -1,0 +1,52 @@
+ubuntu@bss-ubu1804:~$ #!/bin/bash
+ubuntu@bss-ubu1804:~$ w=$#
+ubuntu@bss-ubu1804:~$ if [ ${w} -gt 1 ] ; then
+> echo "$1";
+> else
+> echo "brak parametrów"
+> fi
+brak parametrów
+
+
+
+
+
+ubuntu@bss-ubu1804:~$ if [ -f config.cfg] ; then
+>                ./config.cfg
+> 
+>         elif [ $# -gt 0 ] ; then
+>                 ./$1;
+>         else
+>                 echo "bład"
+>         fi
+bash: [: missing `]'
+bład
+
+
+
+
+ubuntu@bss-ubu1804:~$ n=$(basename $0)
+ubuntu@bss-ubu1804:~$ 
+ubuntu@bss-ubu1804:~$ if [ ${n: -3} != ".sh" ] ;then
+>                     mv ${n} ${n}.sh
+>         else
+> lab_3                echo "SKrypt posiada .sh"
+>         fi
+
+
+
+ubuntu@bss-ubu1804:~$ p=$(ls -l |grep -e ^- | wc -l)
+ubuntu@bss-ubu1804:~$ 
+ubuntu@bss-ubu1804:~$ if [ ${p} -gt 5 ] ; then
+>             echo "jest wiecej niz 5 plików"
+>         else
+>             echo "jest mniej niz 5 plikow"
+>         fi
+jest wiecej niz 5 plików
+
+
+ 
+
+
+
+
