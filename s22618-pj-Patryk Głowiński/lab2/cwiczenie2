@@ -1,0 +1,28 @@
+-Wpisuje w terminalu X=tekst
+
+-Do X zostaje przypisany tekst
+
+-Po wpisaniu echo $X w terminalu wyświetla nam się przypisany tekst
+
+-Wpisując bash terminal przechodzi dalej, po czym wpsiując echo $X pojawia się puste pole
+
+-Po wpisaniu do terminala X=Tekst dłuższy wyświetla się komunikat
+dłuższy: command not found
+
+-Po zastosowaniu cudzysłowu, jak i apostrofu  do X został przypisany wypisany tekst
+
+-Po wpisaniu X="Tekst 1" Y="Tekst:$X" echo "$Y" wyświetla się
+Tekst:Tekst 1
+
+-Wpisując Y='tekst:$X', echo "$Y" wyświetla się
+tekst:$X
+
+-Wpisując Y=tekst:$X, echo "$Y" wyświetla się
+tekst:Tekst 1
+
+W cudzysłowach może być kilka słów i znaków, a znaki specjalnę są interpretowane, a zmienne tłumaczone na wartości
+W apostrofach możemy przekazać dowolny ciąg znaków nie zawierający apostrofów
+
+-Po wpisaniu A=Ala, echo $A ma kota, a kot ma ${A}ę wyświetla się
+Ala ma kota, a kot ma Alaę
+

@@ -1,0 +1,48 @@
+ubuntu@bss-ubu1804:~$ for i in {10..1..2}; do
+>         echo "$i"
+>   done
+10
+8
+6
+4
+2
+
+
+
+
+
+ 
+ubuntu@bss-ubu1804:~$ tablica=($@)
+ubuntu@bss-ubu1804:~$ for i in  "${tablica[@]}";
+> do echo $i ;
+> done
+
+
+
+
+
+
+ubuntu@bss-ubu1804:~$ nazwaPliku=$(ls -p | grep -v /)
+ubuntu@bss-ubu1804:~$   for i in ${nazwaPliku}
+>   do
+>           echo "Patrzcie państwo oto plik '$i'"
+>   done
+Patrzcie państwo oto plik 'cwicz3'
+Patrzcie państwo oto plik 'cwiczenie1'
+Patrzcie państwo oto plik 'cwiczenie2'
+Patrzcie państwo oto plik 'else'
+Patrzcie państwo oto plik 'mv'
+Patrzcie państwo oto plik 'plik'
+Patrzcie państwo oto plik 'wynik1'
+Patrzcie państwo oto plik 'zad4.save'
+
+
+
+
+ubuntu@bss-ubu1804:~$ if [ !${cos: -2}  = ".c" ] ; then
+if [ then{cos: -2}  = ".c" ] ; then
+> mv -- ${cos} ${cos}.c
+> else
+> mv  -- ${cos} ${cos: -2}
+> fi
+
