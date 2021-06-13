@@ -1,0 +1,5 @@
+Z tego co zauważyłem jeżeli wpiszemy X=Tekst dłuższy to "dłuższy" jest wyszukiwany jako komenda.
+Aby cały tekst znalazl sie jako zmienna X należy go umieścić pomiedzy dwa cudzysłowy.
+
+Jaka jest roznica miedzy " ", a ' '.  W cudzysłowu następuje rozwiniecie zmiennych (dlatego w przypadku eksportow podajemy sama nazwe zmiennej bez dolara np export x), natomiast w apostrofach mamy tekst zwrocony dokladnie taki jaki wpisalismy pomiedzy apostrofy.
+Może nam to posłużyć miedzy innymi to wpisywania stałych, które nie mają być zamienione.
