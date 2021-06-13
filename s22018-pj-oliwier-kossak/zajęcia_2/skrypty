@@ -1,0 +1,70 @@
+ Znak # (hash) służy do tworzenia komentarzy. 
+ Kombinacja znaków #! nazywa sie shebang, każdy skrypt powinnien zawierać ten elemnt w pierwszym wierszu. 
+ Na początku tworzymy skrypt który, wystwiela królika na ekranie, aby wyświetlić królika na ekranie trzeba nadać plikowi odpowiednie uprawnienia.
+ parametr echo -e daje możliwość przetwarzania specjalnych znaków sterujących.
+ sekwencja \e[33m oznacza kolor żółty \e[0m powrót do konfiguracji domyślnej.
+ Ćwiczenie1:
+ #!/bin/bash
+ echo 'Witamy w terminalu'
+ ć
+ Ćwiczenie2:
+ przypisuje zmiennej x=tekst
+ za pomocą echo $x odczytuje wartość zmiennej x. Po wpisaniu w terminalu:
+ bash
+ echo $x
+ zmienna nie wyświetla zawartosc pownieważ jest to zmienna lokalna, żeby zmienna była widoczna trzeba dodać komendę export
+ Przypisuje do zmiennej X="teskt 1", do zmiennej Y="tekst $X" wywołuje echo "$Y" otrzymuje: tekst teskt 1
+ Cudzysłów pozwala w zmiennej Y odowłać się do zmiennej X , apostrof tworzy w zmiennej tylko tekst bez odwołania 
+ echo $RANDOM generuje liczby pseudolosowe 
+ echo $PWD= robi to samo co pwd (zwraca biezacą ścieżkę) 
+ echo $HOSTNAME = bss-ubu1804 nazwa serwera 
+ X=$(ls -la) do zmiennej przypisuję komendę: 
+ echo "$X" X należy wstawić w cudzysłów żeby komenda ls -la zadziała poprawnie 
+ aby zmienić ${A}ę , którę da słowo Alaę na Alę używam ${A:0:2}ę
+ skrypt, który wywołuje tekst dla imion:
+ #!/bin/bash
+
+ echo -e " '$1' ma kota, kto am '$1' "
+ 
+ Skrypty który czyta pierwszą i ostatnia literę wyrazu:
+ #!/bin/bash
+
+ str=$1
+ i=$((${#str}-1))
+ echo -e " ${1:0:1} ${1:i:1} "
+
+ A=Ala
+ echo $A ma kota, a kota ma ${A} | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g' wypisuje:
+ Ala ma kota, a kota ma Alę
+ 
+Skrypt który zmienia ostatnią literę imienia żenskiego na 'ę' , a męskiego na 'a':
+
+#!/bin/bash
+
+wyraz=$1
+
+	if [  ${wyraz: -1} == "a" ] ; then
+	
+		echo ${wyraz}  ma kota, kot ma ${wyraz: :-1}ę
+	
+	else
+		echo ${wyraz}  ma kota, kot ma ${wyraz}a
+	
+fi
+
+Skrypt który wybiera plik i wyraz do pokolorowania na czerwono 
+
+#!/bin/bash
+
+     echo -n "Wyraz"
+     read wyraz
+     echo -n "Plik"
+     read plik
+
+     cat $plik | sed ''/$wyraz/s//`printf "\033[31m$wyraz\033[0m"`/''
+
+ 
+
+ 
+ 
+ 
