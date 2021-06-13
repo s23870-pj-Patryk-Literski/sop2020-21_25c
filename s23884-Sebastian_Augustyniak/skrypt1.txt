@@ -1,0 +1,53 @@
+Na ćwiczeniach 21.03.2021 uczylismy sie o skryptach bash 1 
+
+1.Zadanie z kroliczkiem
+
+Znak hash(#) - komentarz 
+
+Na poczatku tworzymy sobie plik "nano kroliczek" klikamy enter i wlacza sie edytor tekstowy.
+Do edytora tekstowego wklejamy:
+#!/bin/bash
+# Skrypt wykorzystuje zaawansowane funkcje
+# systemy do tego aby narysowac kroliczka:
+echo -e " \e[m\\_/)"
+echo -e " (=[33m'\e[31m.\e[33m'\e[0m=)" i klikamy enter , zamykamy i nadejemy uprawnienia wykonywania.
+
+chmod u+x kroliczek.sh i klikamy enter  i uruchamiamy ./kroliczek.sh i wydrukowala sie twarz kroliczka
+
+-e - przetwarzanie specjalnych znakow sterujacych 
+
+Zmiana koloru znaku:
+e[33]- kolor zolty
+e{31 - kolor czerowny
+\e[0m - zresetowanie koloru ( kolory domyslne)
+
+manulau systemowym mozna znalesc jakie sa kolory za pomoca komendy man. 
+
+echo -e "\e[31mslowo" i enter slowo wydrukowalo sie na czerwono 
+ 
+2. export  -n - usuniecie zmiennej srodowiskowej 
+$ZMIENNA  lub ${ZMIENNA} - odczyt zawartości zmiennej 
+export zmienna= wartosc albo zmienna=wartosc export zmienna - zmienna widoczna w podpowłokach 
+
+3.wpisujemy w terminal x=Tekst dluzszy i klikamy enter i bash nie wie co z tym zrobic ale mozna to naprawic za pomoca 
+x="Tekst dluzszy" i echo $x : Wyswietla tekst dluzszy  lub X=a\ b to zadziala bo ukosnik jest informacja dla basha ucieczka przed spacja i 
+enter i echo $x i wyswietli a b 
+
+W nazwach plikow i katalogow nie uzywamy spacji i polskich znakow 
+
+echo "$x" i enter dziala a b  echo '$x' jak damy w cudzyslowiach pisze to samo 
+
+$* , $@ - one potocznie zwracaja to samo ale sie roznia 
+$0 - nazwa skryptu 
+$1, $2 kolejne parametry
+$? - kod zakonczenia ostatniego polecenia 
+$$ - pid proceu biezacej powloki 
+
+echo $PATH - lista katalogow w ktorym szukane beda polecenia ktore bedziemy wpisywac 
+echo $RANDOM - wartosci pseudolosowe za kazdym razem dostajemy inne wartosci po ponownym wpisaniu 
+echo $PWD  - zawsze zwraca nam biezaca sciezke  
+echo $USER - zwraca nam numer indeksu 
+echo $HOME - sciezka do katalogu domowego
+echo $HOSTNAME - nazwa samego serwera 
+
+sed - sluzy do usuwania, znajdowania  fragmentów plikow
