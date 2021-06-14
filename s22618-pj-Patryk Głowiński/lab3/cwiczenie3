@@ -1,0 +1,23 @@
+fibonaci(){
+
+  local liczba=$1
+  local a=0
+  local b=1
+  local c
+
+
+  if [ ${liczba} -le 1 ] ; then
+        echo  "${liczba} "
+  else
+          for((i=1; i <=${liczba} ; i++))
+                do
+                c=$((a+b))
+
+                a=y
+                b=c
+                done
+                        echo " ${z}"
+
+  fi
+}
+fibonaci $1

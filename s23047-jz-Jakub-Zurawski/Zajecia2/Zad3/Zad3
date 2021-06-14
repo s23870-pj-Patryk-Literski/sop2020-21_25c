@@ -1,0 +1,27 @@
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+//Path jest zmienna ktora sledzi okreslone katalogi.
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $RANDOM 
+21606
+//Wyświetli losowo liczby.?
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $PWD
+/home/ubuntu/Desktop/Zadanka/Zad3
+//Przechowuje naszą aktualną lokalizacje, roznica miedzy zmienna $PWD a komenda pwd pojawi sie kiedy bedzie to robic w skrypcie. Lepiej tego nie robic! XD
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $PS1
+\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+//Wartosc ta jest interpretowana i uzywana jako podstawowy lancuch zachety. Znajdziemy w niej m.in u-user czy h-hostname. Mozemy zmienic userowi no kolor export PS1='\[\e[1;36m\]\u\[\e[m\]:'
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $USER
+ubuntu
+//Przechowuje nazwe uzytkownika
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $HOSTNAME
+bss-ubu1804
+//nazwa samego serwera
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad3$ echo $OSTYPE
+linux-gnu
+//typ systemu

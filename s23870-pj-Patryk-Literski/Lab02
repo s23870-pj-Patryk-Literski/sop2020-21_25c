@@ -1,0 +1,175 @@
+Ćwiczenie 1.
+Po wpisaniu skryptu 
+#!/bin/bash 
+
+echo "Witamy w terminalu"
+
+Terminal wyświetla tekst Witamy w teminalu.
+
+Ćwiczenie 2.
+Po wpisaniu polecenia x=tekst program przypisał słowo "tekst" do zmiennej x.
+
+Po wpisaniu polecenia echo $x program wyśweitla tekst "tekst".
+
+Po wpisaniu polecenia bash terminal przechodzi dalej
+
+Po wpisaniu polecenia echo $x terminal wyświetla pustą przestrzeń.
+
+Wnioskuje że po wpisaniu polecenia bash wszystkie wartości się resetują dlatego jest wyświetlana pusta przestrzeń
+
+------------------
+
+Po wpisaniu polecenia x=Teskt dłuższy wyświetlił mi sie komunikat o treści " Nie znaleziono polecenia " .
+Po wpisaniu polecenia echo $x terminal wyświetlił pustą przestrzeń.
+Stwierdzam że słowa "Tekst dłuższy" nie zostały przypisane do  zmiennej x ponieważ drugie słowo jest traktowane po spacji jako polecenie. Powód brakuje cudzysłowów.
+
+Po wpisaniu polecenia x="Tekst dłuższy" oraz echo $x, tekst "Teskt dłuższy" został przypisany do zmiennej x ponieważ terminal wyświetla tekst "Teskt dłuższy".
+
+------------------
+
+Po wpsianiu polecenia x="Tekst 1" tekst  "Teskt 1" został przypisany do zmiennej x.
+Po wpisaniu polecenia y="tekst:$x" zmienna x została przypisana do zmiennej y.
+Po wpisaniu polecenia echo "$y" terminal wyświetla nam tekst "Teskst 1".
+
+Po wpisaniu polecenia y='tekst:$x' tekst "$x" został przypisany do zmiennej y.
+Po wpsianiu polecenia echo "$y" terminal wyświetla nam tekst "$x".
+
+Po wpsianiu polecenia y=tekst:$x zmienna x razem z treścią do zmiennej y.
+Po wpisaniu polecenia echo "$y" terminal wyświetla tekst "Tekst 1".
+
+" przypisuje jednej treści na bierząco natomiast ' pozwala na zapisanie kilku rzeczy w ciagu.
+
+-----------------
+
+Po wpisaniu polecenia A=Ala ,tekst "Ala" został przypisany do zmiennej A.
+Po wpisaniu polecenia echo $A ma kota , a kot ma ${A}ę terminal wypisuje nam tekst
+"Ala ma kota, a kot ma Alaę". 
+Dzieje się tak ponieważ treść ze zmiennej  A jest wyświetlana razem z przypisanym obok ę.
+
+
+
+
+Ćwiczenie 3.
+
+Zmienna PATH po wpisaniu wyśweitla nam listę katalogów.
+
+Zmienna RANDOM wyświetla nam losowe liczby np.501,20231.
+
+Zmienna PWD wyświetla nam naszą obecną lokalizację.
+
+Zmienna PS1 wyświetla nam różne znaki specjalne.
+
+Zmienna USER wyświetla nam nazwe użytkownika.
+
+Zmienna HOSTNAME wyświetla nam nazwe serwera.
+
+Zmienna OSTYPE wyświetla nam nazwe systemu.
+
+Ćwiczenie 4.
+
+Po wpisaniu polecenia ls -l wyświetla się nam lista katalogów i plików danej lokalizacji.
+
+Aby przypisać komendę ls -l do zmiennej x należy wykonać polecenie x=$(ls -l).
+
+Jeżeli w celu wyświetlenia zmiennej x użyjemy polecenia echo $x to wyświetli się nam poprzestawiana lista katalogów i plików aby wyświetlić ja w taki sposób jak przy poleceniu ls -l ale bez kolorków to należy użyć polecenia echo "$x" wtedy polecenie to zostanie wykonane prawidłowo.
+
+
+Ćwiczenie 5.
+
+Aby wyświetlić poprawnie tekst "Ala ma kota, a kot ma Alę" należy wpisać polecenie echo $A ma kota, a kot ma ${A/a/e} ponieważ w pierwszej kolejności do zmiennej $A jest przypisaywana litera a poźniej zamienia się z literą e dzieki czemu dostajemy wyraz "Ale".
+
+-------------------
+
+Aby wykonać skrypt z zadania 5 na początku muszę stworzyć folder "Imiona".
+
+W folderze zapisuje skrypt po kolei :
+
+#!/bin/bash
+
+echo "Podaj imię właściciela kota" 
+read name
+echo "$name ma kota, a kot ma ${name}a
+
+Należy nadać uprawnienie użytkownikowi chmod u+x.
+
+Po napisaniu skryptu użytkownik wpisuje w terminal ./nazwa folderu(Imiona)
+terminal pyta użytkownika o imie właśćciela kota.
+
+Po wpsianiu imienia właśćciela kota i kliknieciu entera terminal wyświetla nam tekst 
+
+"(imie właśćciela) ma kota, a kot ma (imie właśćciela)+a" 
+
+przykład "Patryk ma kota,a kot ma Patryka" .
+
+------------------
+
+Aby wykonać ostatnie polecenia ćwieczenia 5 należy stworzyć folder "Tekst"
+
+W folderze poczynić trzeba następujące kroki :
+
+
+#!/bin/bash
+
+echo "Podaj Tekst"
+
+read word
+
+następnie aby wskazać pierwszą literę tekstu należy wpisać  
+
+echo ${word:0:1}
+
+aby wskaazać ostatnią litere tekstu należy wpisać 
+
+echo ${word: -1}
+
+echo -e ${word/SOP/\\e[32mSOP\\e[0m}
+
+
+po czym należy wpisać w terminal w katalogu głownym ./Tekst
+
+Terminal poprosi użytkownika o podanie tekstu 
+
+po podaniu tekstu terminal wyświetlić powinien pierwszą i ostatnią jego litere.
+
+Jeśli natomiast podamy tekst w którym wytępuje wyraz SOP to terminal wyświetli nam słowo SOP w kolorze zielonym.
+
+
+Ćwiczenie 6.
+
+Przy wpisaniu polecenia bedącego przy echo alicja do tekstu Ala ma...
+
+echo Ala ma kota, a kot ma Ale | sed 's/\([^ę]\)$/\1a/g'
+
+Dostajemy tekst 
+
+Ala ma kota, a kot ma Alea
+
+Aby to naprawić należy wpisać polecenie 
+
+echo Ala ma kota, a kot ma Ale | sed 's/\([^e]\)$/\1a/g'
+
+teraz powinien wyświetlić nam się tekst
+
+Ala ma kota, a kot ma Ale
+
+
+
+Zadanie domowe 
+
+Na początku tworze plik tekstowy touch patryk.txt i wpisuje w nim przykładowy tekst lub zdanie.
+
+Po czym tworze folder "Skrypt" w którym pisze następujący skrypt :
+
+#!/bin/bash
+
+name=$(sed 's/Patryk/\e[31mPatryk|\e[30m/gi'$1)
+
+echo -e $name
+
+wychodzę do katalogu głownego nadaje uprwanienia do folderu
+
+chmod u+x Skrypt
+
+Wywołując skrypt Imię powinno wyświetlać się na czerwono
+
+
