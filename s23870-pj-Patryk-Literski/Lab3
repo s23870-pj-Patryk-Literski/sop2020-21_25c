@@ -22,15 +22,15 @@ Tworze folder "Ćw102" i pisze w nim skrypt :
 
 if [ -f config.cfg]; then
 
-./config.cfg
+	./config.cfg
 
 elif [ $# -gt 0]; then 
 
-./$1;
+	./$1;
 
 else 
 
-echo "Błąd"
+	echo "Błąd"
 
 fi
 

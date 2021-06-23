@@ -1,0 +1,53 @@
+Ćwiczenie 1
+
+Tworze folder "Parametr" i pisze w nim skrypt :
+
+#!/bin/bash
+
+if [$# -ne 0 ] ; then
+
+	echo $1
+
+else
+
+	echo "Nie podano argumentów"
+
+fi
+
+-----------------
+
+Tworze folder "Ćw102" i pisze w nim skrypt :
+
+#!/bin/bash
+
+if [ -f config.cfg]; then
+
+	./config.cfg
+
+elif [ $# -gt 0]; then 
+
+	./$1;
+
+else 
+
+	echo "Błąd"
+
+fi
+
+
+Ćwiczenie 2
+
+Tworze folder "ĆW204" i pisze następujący skrypt :
+
+#!/bin/bash
+
+plikroz=$(ls -p | grep -v /)
+
+if [ !${plikroz: -2} =".c" ] ; then
+
+	mv --${plikroz} ${plik}.c
+
+fi
+
+-----------------------
+
