@@ -1,0 +1,38 @@
+buntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ x=tekst
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+tekst
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ bash
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ export x
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ bash
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ export x
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ ls
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ x=tekst
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+tekst
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ export x
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ bash
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $x
+tekst
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ X=Tekst dłuższy
+dłuższy: command not found
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ X="Tekst dłuższy"
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo $X
+Tekst dłuższy
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ X="Tekst 1"
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ Y="tekst:$X"
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo "$Y"
+tekst:Tekst 1
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ Y='tekst:$X'
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo "$Y"
+tekst:$X
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ Y=tekst:$X
+ubuntu@bss-ubu1804:~/Desktop/Zadanka/Zad2$ echo "$Y"
+tekst:Tekst 1

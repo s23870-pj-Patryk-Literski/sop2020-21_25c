@@ -1,0 +1,13 @@
+-PATH-zawiera listę katalogów, które są przeszukiwane w poszukiwaniu plików wykonywalnych
+
+-RANDOM-wyświetla nam losową liczbę
+
+-PWD-zawiera pełną ścieżkę aktualnie otwartego katalogu
+
+-PS1-zawiera sekwencje znaną jako znak zachęty
+
+-USER-zawiera nazwę aktualnie zalogowanego użytkownika
+
+-HOSTNAME-zawiera nazwę naszego hosta ( bss-ubu1804)
+
+-OSTYPE-zawiera rodzaj naszego systemu operacyjnego (linux-gnu)

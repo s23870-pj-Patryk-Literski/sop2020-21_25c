@@ -1,0 +1,14 @@
+Aby tekst wyświetlał się poprawinie należy zamienić ${A}ę na ${A:0:2}ę
+
+
+ubuntu@bss-ubu1804:~$ str=$1
+ubuntu@bss-ubu1804:~$ i=$((${#str}-1))
+ubuntu@bss-ubu1804:~$ echo -e " ${1:0:1} ${1:i:1} "
+   
+ubuntu@bss-ubu1804:~$ A=Ala
+ubuntu@bss-ubu1804:~$ echo $A ma kota, a kota ma ${A} | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g'
+Ala ma kota, a kota ma Alę
+ubuntu@bss-ubu1804:~$ S=Sebastian
+ubuntu@bss-ubu1804:~$ echo $S ma kota, a kota ma ${S} | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g'
+Sebastian ma kota, a kota ma Sebastiana
+

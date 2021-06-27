@@ -8,7 +8,7 @@ then
 ...
 else 
 ...
-fi
+fi  
 
 Cwiczenie 1:
 
@@ -16,7 +16,17 @@ Cwiczenie 1:
 
 #!/bin/bash
 
-if [ $# -gt 1 ]; then
-    echo $1;
+if [ $# -gt 1 ]; then    <- $# oznacza liczbę 
+przyjętych parametrów do skryptu oddzielonymi spacjami
+    echo $1;    <- wyświetla pierwszy podany parametr
 else echo nie podano parametrów;
 fi
+
+w ćwieczeniu 1.2 potrzebne jest dodanie parametru -f który sprawdza 
+czy isnieje plik [ -f <- file ]
+
+zadanie 2.3 
+IFS - Interial Field Separator <- Zmienna środowiskowa przechowująca
+znaki rozdzielające 
+
+

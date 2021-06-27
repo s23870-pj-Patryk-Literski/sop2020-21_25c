@@ -1,0 +1,4 @@
+-Aby przypisać ls -l do X należy użyć X=$(ls -l)
+
+-Aby nie było różnicy miedzy zwykłym użyciem, a tym przypisanym należy $X zastosować w cudzysłowach echo "$X"
+

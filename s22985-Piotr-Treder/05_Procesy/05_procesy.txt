@@ -1,0 +1,3 @@
+PPID - Parent Process ID 
+PID - Process ID
+gcc -Wall -ansi -pedantic -o Zad1 Zad1.c
