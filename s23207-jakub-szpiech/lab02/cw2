@@ -1,0 +1,17 @@
+X=tekst - przpisuje wartosc do zmiennej
+echo $X - drukuje mi wartosc zmiennej
+bash - uruchamia basha w bashu
+echo $X - nic się nie wyświetla
+
+Zeby zmienna byla widoczna w podpowlokach, wartosc musimy wpisac w cudzyslowiu
+
+------
+
+X=tekst dluzszy
+echo $X
+wydrukuje: tekst
+aby wydrukowalo cala wartosc nalezy ja wpisac w "" lub bez spacji
+
+------
+Roznica miedzy " i ' - w cudzyslowiu nastepuje rozwiniecie zmiennych, w apostrofach zwraca nam tekst dokladni taki jak wpisalismy
+

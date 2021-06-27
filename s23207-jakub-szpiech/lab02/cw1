@@ -1,0 +1,13 @@
+---
+Napisz skrypt wyswietlajacy na terminalu tekst "Witamy w terminalu"
+
+#!/bin/bash
+echo -e "Witamy w terminalu"
+
+------
+następnie zapisujemy plik z roszerzeniem .sh
+zmieniamy uprawnienia: chmod u+x nazwapliku.sh
+wywolujemy skrypt ./nazwapliku.sh
+
+
+
