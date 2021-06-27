@@ -1,0 +1,209 @@
+#############################################
+ZAD 1
+---------------------------------------------
+POLECENIE:
+
+Napisz program obliczajacy sume liczb 
+wprowadzonych przez uzytkownika (ze 
+standardowego wejscia) i wypisujacy 
+wynik na standardowe wyjscie. 
+
+---------------------------------------------
+WYKONANIE:
+
+Nazwa pliku: zad1.c
+
+#include<stdio.h>
+int main(){
+	int sum=0;
+	int liczba=0;
+	while (scanf("%d\n", &liczba) > 0){
+		sum+=liczba;
+	}
+
+	printf("Suma = %d\m", sum);
+	return 0;
+}
+
+---------------------------------------------
+
+Kompilacja pliku za pomoca polecenia:
+
+gcc -Wall -ansi -pedantic -o zad1 zad1.c
+
+Uruchomienie, komenda: ./zad1
+Nalezy podac kilka liczb, ktore nastepnie
+zostana zsumowane, wyjscie z petli CTRL+D.
+
+
+#############################################
+ZAD 2
+---------------------------------------------
+POLECENIE:
+
+Przerob ten program tak, aby wartosc była 
+zwracana jako kod zakonczenia programu. 
+Wyswietl tą wartość z linii komend.
+
+---------------------------------------------
+WYKONANIE:
+
+Nazwa pliku: zad2.c
+
+#include<stdio.h>
+int main(){
+	int sum=0;
+	int liczba=0;
+	while (scanf("%d\n", &liczba) > 0){
+		sum+=liczba;
+	}
+
+	printf("Suma = %d\m", sum);
+	return sum;
+}
+
+---------------------------------------------
+
+Kompilacja pliku za pomoca polecenia:
+
+gcc -Wall -ansi -pedantic -o zad2 zad2.c
+
+Podobnie co w poprzednim zadaniu przy czym
+przy uzyciu komendy echo $? dostajemy wartosc
+jako kod zakonczenia programu, np. przy
+wpisywaniu liczb: 2 2 -5 otrzymamy po uzyciu
+komendy wartosc: 255
+
+
+
+#############################################
+ZAD 3
+---------------------------------------------
+POLECENIE:
+
+Napisz program wySwietlający tradycyjna 
+choinke o zadanej wysokoSci. Wysokosc niech 
+bedzie podana jako parametr wywolania programu.
+
+---------------------------------------------
+WYKONANIE:
+
+Nazwa pliku: zad3.c
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc, char** argv){
+	int wiersze = 0;
+	int aktualnyWiersz = 0;
+	int aktualnyElement = 0;
+
+	if (argc != 2) {
+		return 1;
+	}
+
+	wiersze = atoi(argv[1]);
+	printf("Drukuje choinke: %dn", wiersze);
+	
+	for(; aktualnyWiersz < wiersze; aktualnyWiersz++) {
+		for(aktualnyElement = wiersze-aktualnyWiersz; aktualnyElement > 0; aktualnyElement-- ) {
+			printf(" ");
+		}
+		for(aktualnyElement = 0; aktualnyElement < (aktualnyWiersz*2)-1; aktualnyElement++) {
+			printf("*");
+		}
+		printf("\n")
+	}
+		
+	return 0;
+}
+
+---------------------------------------------
+
+Kompilacja pliku za pomoca polecenia:
+
+gcc -Wall -ansi -pedantic -o zad3 zad3.c
+
+Program po uruchomieniu i podaniu liczby 
+elementow wypisze nam choinke zlozona z 
+gwiazdek.
+
+
+
+
+#############################################
+ZAD IO
+---------------------------------------------
+POLECENIE:
+
+Napisz program wczytujący z pliku tekstowego 
+ciąg liczb. Format pliku jest taki:
+
+    1.liczba elementów ciągu (jako liczba naturalna)
+    2.Kolejne liczby - każda w nowej linii
+
+Niech program wypisze je w odwrotnej kolejności. 
+Program powinien przyjmować zero albo jeden argument:
+
+    1.jeśli nie podano argumentu, to ma wczytywać ze standardowego wejścia
+    2.jeśli podano argument, to jest to nazwa pliku do wczytania
+
+Skorzystaj z fopen, fclose, fscanf.
+
+Zabezpiecz przed przepełnieniem bufora.
+
+---------------------------------------------
+WYKONANIE:
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main(int argc, char** argv) {
+	FILE *inputFile;
+	char *filename;
+	int numberOfLinesToRead = 0;
+	int currentLine = 0;
+	int *numbers;
+
+	if (argc == 2) {
+		filename = argv[1];
+		inputFile = fopen(filename, "r");
+	} else {
+		inputFile = stdin;
+	}
+
+
+	if (inputFile == NULL) {
+		fprintf(stderr, "Error while opening input file\n");
+		return 1;
+	}
+
+	/* here file MUST be open */
+	fscanf(inputFile, "%d\n", &numberOfLinesToRead);
+	printf("Lines to read: %d\n", numberOfLinesToRead);
+
+	numbers = malloc(numberOfLinesToRead * sizeof(int));
+
+	for(currentLine = 0; currentLine < numberOfLinesToRead; currentLine++) {
+		int number = 0;
+		fscanf(inputFile, "%d\n", &number);
+		number[currentLine] = number;
+	}
+
+	fclose(inputFile);
+
+	for(currentLine = numberOfLinesToRead; currentLine > 0; currentLine--) {
+		printf("n: %d\n", numbers[currentLine-1]);
+	}
+
+	free(numbers);
+
+	return 0;
+}
+
+---------------------------------------------
+
+Kompilacja pliku za pomoca polecenia:
+
+gcc -Wall -ansi -pedantic -o zadIO zadIO.c
+

@@ -1,0 +1,221 @@
+-------------------------------------------------------------
+ZAD1
+-------------------------------------------------------------
+POLECENIE:
+
+Napisz program, ktory przedstawi swoj numer PID, oraz PPID.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+
+int main(){
+	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	return 0;
+}
+
+-------------------------------------------------------------
+ZAD2
+-------------------------------------------------------------
+POLECENIE:
+
+Niech program z poprzedniego zadania bedzie dodatkowo, po 
+wypisaniu, czekal na standardowym wejsciu na dane od uzytkownika.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+
+int main(){
+	
+	int x;
+	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	scanf("%d", &x);
+	return 0;
+}
+
+-------------------------------------------------------------
+ZAD3
+-------------------------------------------------------------
+POLECENIE:
+
+Uruchom program z poprzedniego zadania - nic nie podawaj na 
+wejsciu (program powinien czekac w nieskonczonosc). Za pomoca 
+komendy kill zamknij ten proces korzystajac z PID wypisanego 
+przez niego.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+#include<sys/wait.h>
+
+int main(){
+	
+	pid_t pid = fork();	
+	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	if (pid > 0){
+		wait(NULL);
+		printf("Koniec czekania \n");
+	}
+	return 0;
+}
+
+-------------------------------------------------------------
+ZAD4
+-------------------------------------------------------------
+POLECENIE:
+
+Napisz program, ktory uruchomi podproces za pomoca komendy fork. 
+Niech proces rodzica oczekuje na proces potomka. Oba procesy 
+powinny wypisac swoj PID oraz PPID.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+#include<sys/wait.h>
+
+int main(){
+	
+	pid_t pid = fork();	
+	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	if (pid > 0){
+		wait(NULL);
+		printf("Koniec czekania \n");
+	}
+	return 0;
+}
+
+-------------------------------------------------------------
+ZAD5
+-------------------------------------------------------------
+POLECENIE:
+
+Napisz program, ktory bedzie obliczal w 2 procesach:
+
+Proces rodzica: Wartość sumy liczb od 0 do wartości zadanej 
+jako pierwszy argument wykonania programu.
+
+Proces potomny: Wypisujący liczby nieparzyste od 1 do wartości 
+zadanej jako pierwszy argument wykonania programu. Program 
+powinien wypisać wyniki w kolejności takiej, że najpierw wypisze 
+wynik proces potomny, a następnie proces rodzica. Nie korzystaj 
+z komendy sleep.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+#include<sys/wait.h>
+#include<stdlib.h>
+
+int main(int argc, char **argv)
+{
+	int liczba = atoi(argv[1]);	
+	pid_t pid = fork();	
+	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	if (pid > 0)
+	{	
+		int i;
+		int suma = 0;
+		for(i = 0; i <= liczba; i++)
+		{
+			suma += i;
+
+		}
+		wait(NULL);
+		printf ("SUMA: %d\n", suma);
+	}else{
+		int i;
+		for(i = 1; i <= liczba; i = i + 2)
+		{
+			printf("Nieparzysta %d\n", i);
+		}
+	}
+	return 0;
+}
+-------------------------------------------------------------
+ZAD6
+-------------------------------------------------------------
+POLECENIE:
+
+Napisz program, ktory uruchomi 100 procesow w taki sposob, ze 
+kazdy kolejny potomek stworzy potomka. Niech kazdy proces poczeka 
+na zakonczenie procesu potomka. Mozesz korzystac z oczekiwania na 
+wejscie lub z komendy sleep i zobacz czy drzewko procesow jest 
+takie jak się spodziewasz (mozesz w tym celu ograniczyc liczbe 
+procesow do 10). Zobacz podpowiedz na początku tej strony.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+#include<sys/wait.h>
+#include<stdlib.h>
+
+int main(int argc, char **argv)
+{
+	int i;
+	for(i = 0; i < 10; i++)
+	{
+		pid_t pid = fork();
+		if(pid == 0)
+		{
+			printf("%d PID: %d\t PPID: %d\n", i, getpid(), getppid());
+		}else{
+			wait(NULL);
+			printf("%d Rodzic juz nie czeka\t PID: %d\n", i, getpid());
+			break;
+		}
+	}	
+	return 0;
+}
+
+-------------------------------------------------------------
+ZAD7
+-------------------------------------------------------------
+POLECENIE:
+
+Napisz program, ktory uruchomi 100 procesow potomnych w taki 
+sposob, ze bedzie jeden rodzic i 100 potomkow. Proces glowny 
+niech oczekuje na zakonczenie wszystkich procesow potomnych.
+
+WYKONANIE:
+
+#include<unistd.h>
+#include<stdio.h>
+#include<sys/wait.h>
+#include<stdlib.h>
+
+int main(int argc, char **argv)
+{
+	int i;
+	pid_t masterPID = getpid();
+	for(i = 0; i < 10; i++)
+	{
+		if (masterPID == getpid())
+		{
+			pid_t pid = fork();
+			if(pid == 0)
+			{
+				printf("%d PID: %d\t PPID: %d\n", i, getpid(), getppid());
+				fflush(stdout);
+			}
+		}
+	}
+	if (masterPID == getpid())
+	{
+	/**	int status = 0;
+waitpid(0, &status, 0); **/
+		wait(NULL);
+		printf("Rodzic zakonczyl czekanie\n");
+		fflush(stdout);
+	}
+	return 0;
+}
+
+-------------------------------------------------------------
+
