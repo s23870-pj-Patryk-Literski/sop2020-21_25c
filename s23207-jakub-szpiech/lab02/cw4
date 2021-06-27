@@ -1,0 +1,2 @@
+ZM=$(ls -la) - zawsze zadziala
+ZM='ls -la' - moze nie zadzialac na starszych wersjach, jest troche szybsza niz pierwsza opcja

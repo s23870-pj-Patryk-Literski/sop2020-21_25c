@@ -1,0 +1,182 @@
+Ćwiczenie 1
+
+Tworze folder "Parametr" i pisze w nim skrypt :
+
+#!/bin/bash
+
+if [$# -ne 1 ]; then
+
+echo $1
+
+else
+
+"Brak argumentów"
+
+fi
+
+-----------------------
+
+Tworze folder "Ćw102" i pisze w nim skrypt :
+
+#!/bin/bash
+
+if [ -f config.cfg]; then
+
+	./config.cfg
+
+elif [ $# -gt 0]; then 
+
+	./$1;
+
+else 
+
+	echo "Błąd"
+
+fi
+
+---------------
+
+Tworze folder "Ćw103" i pisze w nim skrypt :
+
+#!/bin/bash
+
+nazwPlik=$(basename ${0})
+nazwa=$(nazwPlik%.*}
+roz=${nazwPlik##*.}
+
+if [${roz} !="sh"]; then
+
+mv ${nazwPlik} ${nazwPlik}.sh
+
+fi
+
+--------------
+
+Tworze folder "Ćw104" i pisze następujący skrypt :
+
+#!/bin/bash
+
+if [ $(ls -l | grep -e ^- | wc -1) -gt 5 ]; then
+
+echo "Jest więcej niż 5 plików"
+
+fi
+
+
+Ćwiczenie 2
+
+Tworze folder "Liczby" i pisze skrypt :
+
+#!/bin/bash
+
+for l in {10..1..2}; do
+
+echo "$l"
+
+done
+
+-----------------
+
+Tworze folder "Ćw202" i pisze skrypt :
+
+#!/bin/bash
+
+arg=($@)
+
+for A in "${arg[@]}";
+
+do echo $A 
+
+done
+
+---------------
+
+Tworze folder "Ćw203" i pisze skrypt :
+
+#!/bin/bash
+
+plik=$(ls -p | grep -v /)
+
+for P in ${plik};
+
+do echo "Proszę państwa oto plik $P"
+
+done
+
+------------------------------
+
+Tworze folder "Ćw204" i pisze następujący skrypt :
+
+#!/bin/bash
+
+plikroz=$(ls -p | grep -v /)
+
+if [ !${plikroz: -2 =".c"] ; then
+
+mv --${plikroz} ${plik}.c
+
+fi
+
+----------------------
+
+Ćwiczenie 3
+
+Tworze folder "Kolor" i pisze następujący skrypt :
+
+#!/bin/bash
+
+function kolor(){
+
+local tekst=$T
+local kolor=$C
+
+echo -e " \e[${kolor}m ${tekst} "
+
+}
+
+  Kolor $T $C
+
+
+---------------
+
+Tworze folder "Fibonacci" i pisze skrypt :
+
+#!/bin/bash
+
+ ciąg (){
+
+local cyfra=$1
+local a = 0
+local b = 1
+local c = 1
+
+if [ ${cyfra} -le 1 ]; then
+
+echo "${cyfra}"
+
+else 
+
+for ((i=1; i <=${cyfra}; i++))
+
+do 
+
+c=$((a=b))
+
+a=b
+
+b=c
+
+echo  "${c}"
+
+fi
+
+}
+
+ciag $1
+
+
+Zadanie domowe
+
+Tworze
+
+
