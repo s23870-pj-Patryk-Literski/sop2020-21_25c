@@ -8,8 +8,9 @@ int main (){
     int i;
     pid_t mastePid = getpid();
     for( i = 0; i < 10; i++){
+        pid_t p = fork();
         if (mastePid == getpid()){
-            pid_t p = fork();
+            
         
             if (p == 0){
                 printf("%d Pid: %d\t ppid: %d\n",i , getpid(), getppid());
