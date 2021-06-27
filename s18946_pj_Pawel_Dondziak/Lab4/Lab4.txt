@@ -1,0 +1,177 @@
+1 Zadania
+1:
+#include<stdio.h>
+int main(){
+	int suma=0;
+	int liczba=0;
+	while (scanf("%d\n", &liczba)>0){
+		suma += liczba;
+	}
+	printf("suma: %d\n",suma);
+	return 0;
+}
+
+// vim zad1.c edycja
+// gcc -Wall -ansi -pedantic -o zad1 zad1.c
+// ^d zamyka 
+
+2:
+#include<stdio.h>
+int main(){
+	int suma=0;
+	int liczba=0;
+	while (scanf("%d\n", &liczba)>0){
+		suma += liczba;
+	}
+	printf("suma: %d\n",sum);
+	return suma;
+}
+// wynik patrzymy echo $?
+3:
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(int argc, char** argv){
+        int wiersze = 0;
+        int aktualnyWiersz = 0;
+        int aktualnyElement = 0;
+        if(argc!=2){
+                return 1;
+        }
+
+        wiersze = atoi(argv[1]);
+        printf("Drukuje choinke zlozona z wierszy: %d\n", wiersze);
+
+        for(; aktualnyWiersz < wiersze; aktualnyWiersz++){
+                for(aktualnyElement = wiersze-aktualnyWiersz; aktualnyElement > 0; aktualnyElement--){
+                        printf(" ");
+                }
+                for(aktualnyElement = 0; aktualnyElement < (aktualnyWiersz+1)*2-1; aktualnyElement++){
+                        printf("*");
+                }
+                printf("\n");
+        }
+
+        return 0;
+}
+
+
+2 Zadania
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main(int argc, char** argv){
+	FILE *file;
+	char *filename;
+	int numberOfLinesToRead = 0;
+	int currentLine = 0;
+	int *numbers;
+
+	if (argc == 2){
+		filename = argv[1];
+		file =fopen(filename, "r");
+	} else {
+		file = stdin;
+	}
+	
+	if (file == NULL) {
+		fprintf(stderr,"Error while opening the file\n");
+		return 1;
+	}
+	
+	fscanf(file, "%d\n", &numberOfLinesToRead );
+	
+	printf("Lines to read: %d\n", numberOfLinesToRead );		
+
+	numers = malloc(numberOfLinesToRead * sizeof(int));
+	
+	for(currentLine=0;currentLine<numberOfLinesToRead;currentLine++){
+		int number = 0;
+		fscanf(file, "%d\n", &number);
+		numbers[currentLine] = number;
+	}
+
+	fclose(file);
+		
+	for(currentLine=numberOfLinesToRead; currentLine > 0; currentLine--){
+		printf("n: %d\n", numbers[currentLine-1]);
+	}	
+
+	free(numers);
+	return 0;
+}
+
+3 Zadania
+
+#include <stdio.h>
+#include <stdlib.h>
+int (*f[3])(int, int);
+int maksimum(int a, int b)
+{
+        if(a>b)
+        {
+                return a;
+        }
+        return b;
+}
+
+int minimum(int p, int q)
+{
+        if(p>q)
+        {
+                return q;
+        }
+        return p;
+}
+
+int suma(int x, int y)
+{
+        return x + y;
+}
+
+int forAll(int* t,int w, int ktoraF)
+{
+        int i,wynik=*(t);
+        for(i = 1; i < w; ++i)
+        {
+                wynik = (*f[ktoraF])(wynik,*(t + i));
+        }
+        printf("wynik to: %d \n",wynik);
+        return wynik;
+}
+int main()
+{
+        int wielkosc,*table,i,funkcja;
+        f[0] = maksimum;
+        f[1] = minimum;
+        f[2] = suma;
+
+        printf("Podaj wielkosc tablicy: ");
+        scanf ("%d",&wielkosc);
+
+        table = (int*) malloc(wielkosc * sizeof(int));
+        if(table == NULL)
+        {
+                printf("Nie mozna przypisac pamieci");
+        }
+
+        printf("Podaj elementy:\n");
+        for(i = 0; i<wielkosc; ++i)
+        {
+                scanf("%d", table + i);
+        }
+
+        printf("Ktorej funkcji uzyc?\n");
+        scanf("%d",&funkcja);
+
+        forAll(table,wielkosc,funkcja);
+
+        return 0;
+
+}
+
+
+
+
+
