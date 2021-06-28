@@ -8,7 +8,15 @@
 #include<unistd.h>
 #include<string.h>
 #include<strings.h>
+#include<signal.h>
+#include<unistd.h>
 
+
+
+
+typedef void (*handler)(int);
+void registerHandler(int signal, handler handle, sigset_t signalBlockingMask);
+void signalHandler(int);
 
 
 void sendFile(FILE *fp, int sockfd, struct sockaddr_in addr){ 
@@ -30,6 +38,10 @@ void sendFile(FILE *fp, int sockfd, struct sockaddr_in addr){
     fclose(fp);
 }
 int main(int argc, char *argv[]){
+    
+
+    registerHandler();
+
 
     int sockfd, newsockfd, n, portNO, clientAdressLen;
     char buffer[256]; 
@@ -94,4 +106,21 @@ int main(int argc, char *argv[]){
     printf("[CLOSING] Closing the connection\n");
     fclose(fp);
     return 0;
+} /*
+void signalHandler(int s) {
+    registerHandler();
+    printf("Handler triggered. s = %d\n", s );
+}
+
+void registerHandler() {
+    sigset_t iset;
+    struct sigaction act;
+
+    sigemptyset(&iset);
+
+    act.sa_handler = &signalHandler;
+    act.sa_mask = iset;
+    act.sa_flags = 0;
+
+    sigaction(SIGINT, &act, NULL);
 }

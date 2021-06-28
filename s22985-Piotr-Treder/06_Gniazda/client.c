@@ -7,6 +7,8 @@
 #include<unistd.h>
 #include<strings.h>
 #include<string.h>
+#include<signal.h>
+#include<stddef.h>
 
 void writeFile(int sockfd, struct sockaddr_in addr){
     FILE *fp;
@@ -28,6 +30,16 @@ void writeFile(int sockfd, struct sockaddr_in addr){
     fclose(fp);
     return;
 }
+typedef void(*handler)(int);
+
+
+// void registerHandler(int signal, handler handle, sigset_t signalBloackingMask){
+//     struct sigaction setup_action;
+//     setup_action.sa_handler = handle;
+//     setup_action.sa_mask = signalBlockingMask;
+//     setup_action.sa_flags = 0;
+//     sigaction(signal, &setup_action, NULL);
+// }
 int main(int argc, char *argv[]){
     char buffer[256];
     int sockfd, newsockfd, clientAdressLen, n;
