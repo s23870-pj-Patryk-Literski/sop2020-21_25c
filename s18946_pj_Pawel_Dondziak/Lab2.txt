@@ -1,0 +1,80 @@
+Zmienne:
+- wartość może być podana bez cudzysłowiu/apostrofy, lecz wtedy musi być to jedno słowo, np. Karkonosze
+- "", można użyć kilku słów, natomiast wszystkie zmeinne będą tłumaczone, czyli zostanie pokazana wartość zmiennej, a znaki specjalne, np '\n' zostaną zinterpretowane
+- '', można podać dowolny ciąg znaków bez apostrofów, jego zawartość nie będzie interpretowana
+
+echo -e "    \e[m(\\_/)"
+echo -e "   (=\e[33m'\e[31m.\e[33m'\e[0m=)"
+# powyższy sktypt zostanie w odpowiedni sposób zinterpretowny, znakom nadane kolory, a w efekcie # zobaczymy któlika na ekranie z żółtymi oczami i czerwonym nosem
+
+chmod u+x kroliczek.sh #zmieniamy uprawnienia tego pliku
+./kroliczek.sh # wyświetlamy którlika
+    (\_/)
+   (='.'=)
+
+
+Typy zmiennych:
+- lokalne - działają tylko w swojej powłoce
+- środowiskowe - są widoczne we wszystkich powłokach
+
+aby zmienna była widoczna w podwłokach wystarczy użyć export, np: export ZMIENNA=wartosc
+
+Ćwiczenie 1:
+echo "Witamy w terminalu"
+
+Ćwiczenie 2:
+
+X=tekst
+echo $X # Zostanie wyświetlona wartość zmiennej
+
+X=Tekst dłuższy
+echo $X # Tekst zostanie zinterpretowane jako wartość X, 
+# natomiast dłuższy jako nieznana komenda, z powodu braku "" lub ''
+
+X="Tekst 1"
+Y="tekst:$X"
+echo "$Y" # output "tekst:Tekst 1", zmienna X zostaje zinterpretowana i dodana do zmiennej Y
+Y='tekst:$X'
+echo "$Y"# output "tekst:$X", zmienna X nie zostaje zinterpretowana
+Y=tekst:$X
+echo "$Y" # output "tekst:Tekst 1", zmienna X zostaje zinterpretowana i dodana do zmiennej Y
+
+A=Ala
+echo $A ma kota, a kot ma ${A}ę # output "Ala ma kota, a kot ma Alaę", zmienna zostaje 
+# dodana do tekstu, zamykamy zmienną w {} aby uniknąć sytuacji w której bash szuka zmiennej $Aę
+
+Ćwiczenie 3:
+Zobacz co przechowują zmienne:
+- PATH określa listę katalogów, które będą przeszukiwane podczas uruchamiania programu.
+- RANDOM W zmiennej RANDOM Bash trzyma zmienną z zakresu 0-32767, echo $RANDOM wyświetli nam pseudo randomową liczbę z tego zakresu
+- PWD zawiera ścieżkę do katalogu, w którym aktualnie się znajdujemy 
+- PS1 przechowuje znak zachęty (command prompt)
+- USER zawiera nasz login
+- HOSTNAME nazwa naszego hosta
+- OSTYPE rodzaj naszego systemu operacyjnego
+
+Ćwiczenie 4:
+Aby dobrze wyświetlić zmienną X=$(ls -l) musimy zamknąć ją w "" w komendzie
+echo "$X"
+
+Ćwiczenie 5:
+Poprawne wywołanie Ali z kotem:
+A=Ala
+echo $A ma kota, a kot ma ${A:0:2}ę #lub
+echo $A ma kota, a kot ma ${A/a/ę} # dla dziewczyn
+
+echo $A ma kota, a kot ma ${A}a # dla chłopców
+
+2 sktypt:
+echo ${1:0:1}
+str=$1
+i=$((${#str}-1))
+echo "${str:$i:1}"
+X="\\e[32mSOP\\e[0m"
+echo -e "${1/SOP/$X}"
+
+Ćwiczenie 6:
+echo "$X ma kota, kot ma $X" | sed s/a$/ę/g
+
+zadanie domowe:
+cat $1 | sed ''/Paweł/s//`printf "\033[31mPaweł\033[0m"`/g''

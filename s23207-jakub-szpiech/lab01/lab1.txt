@@ -1,0 +1,23 @@
+1. Download OS from https://www.debian.org/
+2. Start VirtualBox. Click "Machine" and "New", in name start typing "Deb" - it should automatically change type and version
+4. Select the amount of RAM. 2048 MB is enough. It should be a multiple of 2. Then press next
+5. Mark "Create a virtual hard disk now", click next, then mark VDI (VirtualBox Disk Image), click next.
+7. Choose "Dynamically allocated", click next
+8. Choose the path for VM to be installed and allocate the size of virtual hdd. 16 GB should be enough, click "Create". New VM should pop in the VM's list
+9. Click RMB on the new VM and go to settings.
+10. General settings has been configured during previous steps
+11. Go to "System". In tab "Motherboard" in "Boot order" uncheck everything besides Hard Disk. In tab "Processor" set amount of cores for 2
+12. Go to "Storage". click LMB on Controller:IDE -> Empty. Then at the right side choose "Optical drive: IDE Secondary Master". Then click on CD icon and "Choose disk file". Now choose previously downloaded ISO from debian page. After that in the "Information" sector you should see paremeters of file.
+13. Go to "Audio". Uncheck "Enable Audio"
+14. Go to "Network". In Adapter 1 tab mark "Enable Network Adapter" and choose NAT
+15. Mark Debian machine, click little black arrow next to start icon and choose "Normal Start"
+16. System will start, when u will have info "Detected hard disk, AHCI controler:..." choose "Start from ISO"
+17. In installer menu choose: Install: text mode
+18. Choose your language, region and keyboard type
+19. Set up machine name and, then set root password and create new user
+20. In Partition disk options choose "Manual"
+21. Click on your disk ->guided partitioning->guided-user entire disk->SCSI(0,0,0) (sda)-17.2 GB ATA VOX HARDISK ->Separate/home/var->SCSI(0,0,0) (sda)-17.2 GB ATA VOX HARDISK (undo partition)-> create new particion--> set size->primiary ->begining
+22. Next choose file type, then click "swap arena".
+23. Next save the changes, Choose server which files will be downloaded from.
+24. In "software selection" undo everything beside last 2 options.
+25. Choose location for system install. Wait for installation. When finished, VM will reboot automatically.

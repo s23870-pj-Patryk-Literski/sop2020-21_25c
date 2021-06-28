@@ -1,0 +1,131 @@
+zad1:
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+	printf("moj PID: %d\nmoj PPID: %d\n",getpid(),getppid());
+	return 0;
+}
+
+zad2:
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+        char input;
+        printf("moj PID: %d\nmoj PPID: %d\n",getpid(),getppid());
+        scanf("Dane: %s",&input);
+        return 0;
+}
+
+zad4:
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main() {
+	int inputPID;
+	pid_t pid = fork();
+	
+	if(pid>0){
+		printf("parent PID: %d\tPPID: %d\n",getpid(),getppid());
+		waitpid(0,&inputPID,0);
+		printf("rodzic zakonczyl czekac na potomka\n");
+	}else if(pid==0){
+		printf("child PID: %d\tPPID: %d\n",getpid(),getppid());
+	}else{
+		printf("Nie udalo sie utorzyc procesu potomka\n");	
+	}
+
+        return 0;
+}
+
+zad5:
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main(int argc, char** argv) {
+	int inputPID;
+	int liczba=atoi(argv[1]);
+	pid_t pid = fork();
+	
+	if(pid>0){
+		int suma=0,i;
+		for(i=0;i<=liczba;i++){
+			suma = suma + i;
+		}
+		waitpid(0,&inputPID,0);
+		printf("RODZIC: suma liczb wynosi: %d\n",suma);
+	}else if(pid==0){
+		int i=0;
+		for(i=1;i<=liczba;i=i+2){
+			printf("DZIECKO: kolejna liczba nieparzysta %d",i);
+		}
+	}else{
+		printf("Nie udalo sie utorzyc procesu potomka\n");	
+	}
+
+        return 0;
+}
+
+zad6:
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main() {
+	int i;
+	
+	for(i=0;i<100;i++){
+		pid_t pid = fork();
+		if(pid>0){
+			wait(NULL);
+			break;
+		}
+		else{
+			printf("numer procesu: %d\tPID: %d\tPPID: %d\n",i,getpid(),getppid());
+		}
+	}
+        return 0;
+}
+
+zad7:
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main() {
+	int i=0,pidRODZIC=getpid();
+	printf("pid rodzica glownego: ",pidRODZIC);
+	for(i=0;i<100;i++){
+		if(getpid()==pidRODZIC){
+			if(fork()==0){
+				printf("numer procesu: %d\tPID: %d\tPPID: %d\n",i,getpid(),getppid());
+			}
+		}
+	}
+	if(pidRODZIC == getpid()){
+		int inputPID;
+		waitpid(0,&inputPID,0);
+		printf("rodzic zaczekal na zakonczenie innych procesow i sam sie zakonczyl");
+		fflush(stdout);
+	}
+
+        return 0;
+}
+
+
+
+
+
+
+
+
+
+
