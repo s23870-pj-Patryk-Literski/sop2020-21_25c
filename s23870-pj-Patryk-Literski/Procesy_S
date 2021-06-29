@@ -5,9 +5,11 @@ Pisze Program :
 #include<unistd.h>
 #include<stdio.h>
 
+	
 int main() {
 	
-	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	
+      	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
 	
 	return 0;
 
@@ -25,9 +27,10 @@ int main(){
 
 	int p;
 	
+	
 	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
 	
-	scanf("%d", &p);
+        scanf("%d", &p);
 	
 	return 0;
 
@@ -47,6 +50,7 @@ int main() {
 
 	fork();
     
+	
 	printf("PID: %d, PPID: %d\n", getpid(), getppid());
 
 	while(wait(NULL) > 0);
@@ -54,8 +58,6 @@ int main() {
 	return 0;
 
 }
-
-
 
 
 Zadanie 1.04
@@ -73,9 +75,10 @@ int main(int argc, char ** argv) {
 	int liczb = 0;
 	int sum;
 
+
 	if(argc != 2) {
        
-	   return 1;
+	  return 1;
     
 	}
 
@@ -83,33 +86,31 @@ int main(int argc, char ** argv) {
 
 	if(fork() == 0) {
         
-	    printf("Dziecko:  \n");
+           printf("Dziecko:  \n");
         
-              for(p = 1; p <= liczb; p+=2) {
+	   for(p = 1; p <= liczb; p+=2) {
             
-                printf("%d \n", p);
+	        printf("%d \n", p);
        
-	}
+	   }
    
-	} else {
+        } else {
         
-            while(wait(NULL) > 0);
+	   while(wait(NULL) > 0);
 
-		 for(p = 0; p <= liczb; p++) {
+	   for(p = 0; p <= liczb; p++) {
             
-		      sum += p;
+	       sum += p;
         
-		}
+	   }
 
-	printf("Rodzic: %d \n", sum);
+	   printf("Rodzic: %d \n", sum);
    
-     	}
+        }
 
-	return 0;
+     return 0;
 
 }
-
-
 
 Zadanie 1.05
 
@@ -122,37 +123,39 @@ Pisze Program :
 
 int main(int argc, char **argv){
 
-int numbers = atoi(argv[1]);
+	int numbers = atoi(argv[1]);
     
 	pid_t Fork = fork();
     
-        printf("PID: %d\t PPID: %d\n", getpid(), getppid());
+	printf("PID: %d\t PPID: %d\n", getpid(), getppid());
     
-	int p;
+        int p;
     
- 	if(Fork > 0){
+	
+        if(Fork > 0){
         
-	   int sum = 0;
+ 	     int sum = 0;
         
-	      for(p=0; p <= numbers; p++){
+	for(p=0; p <= numbers; p++){
             
-	         sum += p;
+	     sum += p;
         
 	}
         
-	wait(NULL);
+	  wait(NULL);
         
-	printf("Suma %d\n", sum);
+	  nprintf("Suma %d\n", sum);
     
+	
 	} else {
+        	
+	   for(p = 1; p <= numbers; p +=  2)
         
-		for(p = 1; p <= numbers; p +=  2)
-        
-	           printf("liczba nieparzysta: %d\n", p);
+            printf("liczba nieparzysta: %d\n", p);
     
 	}
     
-        return 0;
+ 	return 0;
 
 }
 
@@ -179,24 +182,27 @@ int main(int argc, char **agrv){
             
              printf("PID: %d\t PPID: %d\n", p, getpid(), getppid());
         
-        } else {
-             
-	       wait(NULL);
+ 	} else {
             
-                printf("%d rodzic nie czeka! PID: %d\n", p, getpid());
+	   wait(NULL);
             
-                   break;
-  		}
-         }    
-    
-          return 0;
+            printf("%d rodzic nie czeka! PID: %d\n", p, getpid());
+            
+           break;
 
+	}
+
+      }    
+    
+      return 0;
 }
 
 
 Zadanie 1.07  
 
+
 Pisze Program :
+
 
 #include<unistd.h>
 #include<stdio.h>
@@ -209,20 +215,21 @@ int main(int argc, char **agrv){
     
 	pid_t masterPID = getpid();
     
-	for(p = 0; p < 100; p++) {
+	for(p = 0; p < 100; p++){
         
-	   if(masterPID == getpid()) {
+	    if(masterPID == getpid()){
             
-             pid_t pid = fork();
+	      pid_t pid = fork();
             
 	       if(pid == 0) {
                 
-                   printf("PID: %d\t PPID: %d\n", p, getpid(), getppid());
+		 printf("PID: %d\t PPID: %d\n", p, getpid(), getppid());
                 
-                   fflush(stdout); 
-	      }
-        
-           }
+		 fflush(stdout);
+            
+	       }
+    	
+	    }
     
 	}
     
@@ -234,7 +241,7 @@ int main(int argc, char **agrv){
     
             wait(NULL);
     
-            printf("rodzic nie czeka!\n");
+	    printf("rodzic nie czeka!\n");
     
             fflush(stdout);
     

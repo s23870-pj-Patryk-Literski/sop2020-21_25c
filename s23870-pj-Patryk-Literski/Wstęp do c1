@@ -11,7 +11,7 @@ int main(){
 
 	while (scanf("%d\n",&licz) > 0){
 
-	sum+=licz;
+	      sum+=licz;
  
         }
 
@@ -43,14 +43,12 @@ int main (){
 
 	while(scanf("%d",liczb) > 0){
 
-        sum += liczb
+           sum += liczb
 
         }
 
 	
         printf("Suma %d\n", sum)
-
-	
 
 	return sum;
 
@@ -82,30 +80,21 @@ int main(int argc, char ** argv){
 
 	for(akwier <= Wiersze; akwier++ ;) {
 
-		for(akelem = Wiersze-akwier; akelem > 0; akelem--){
+	     for(akelem = Wiersze-akwier; akelem > 0; akelem--){
 
+                printf(" ");
+             }
+                    for(akelem = 0; akelem < ((akwier*2)-1); akelem++){
 
-		printf(" ");
+                       printf("*");
 
-        }
-
-
-	for(akelem = 0; akelem < ((akwier*2)-1); akelem++){
-
-
-           printf("*");
-
-        }
-
+            	    }
 
            printf("\n");
-
-
-	}
+       }
 
 
 }
-
 
 
 Zadanie 2.01
@@ -132,15 +121,15 @@ int main(int argc, char** argv) {
    
 	} else {
        
-          inputfile = stdin;
+            inputfile = stdin;
    
 	}
 
 	if(inputfile == NULL) {
         
-            fprintf(stderr, "Błąd : nie można otworzyć pliku /n");
+           fprintf(stderr, "Błąd : nie można otworzyć pliku /n");
         
-            return 1;
+             return 1;
     
 	}
 
@@ -161,8 +150,6 @@ int main(int argc, char** argv) {
     
 	fclose(inputfile);
 
-    
-	
 	for(p = linestoread; p > 0; p--){
         
 	      printf("n: %d\n", numbers[p-1]);
@@ -198,9 +185,7 @@ int main(int argc, char** argv) {
 	int *numbers;
 
 
-
 	printf("%d %s \n", argc, argv[1]);
-
 
 
 	inputfile = fopen("input.txt", "r");
@@ -233,9 +218,7 @@ int main(int argc, char** argv) {
 
 	fscanf(inputfile, "%d\n", &linestoread);
 
-
 	numbers = malloc(linestoread * sizeof(int));
-
 
 	for(p = 0; p < linestoread; p++) {
         
@@ -248,8 +231,7 @@ int main(int argc, char** argv) {
 	}
     
 	fclose(inputfile);
-
-		
+	
 	fwrite(&numbers, sizeof(numbers), 1, binFile);
     	fclose(binFile);
 
@@ -258,3 +240,5 @@ int main(int argc, char** argv) {
 	return 0;
 
 }
+	
+	
