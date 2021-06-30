@@ -1,0 +1,2 @@
+Wysylamy sygnal do procesu komenda kill i numer ppd ktory jest numerem procesu.
+ppid to numer kienka gdzie wykonuje sie proces.

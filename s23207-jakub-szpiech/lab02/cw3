@@ -1,0 +1,13 @@
+PATH - 
+RANDOM - generuje losowa liczbe
+PWD - zwraca obecna lokalizacje, dziala tak samo jak samo pwd
+PS1 - Prompt String One, jest to kouminakt wyświetlany na początku linii. Mozna go modyfikowac
+USER - nazwa uzytkownika
+HOSTNAME - nazwa hosta
+OSTYPE - typ systemu
+
+-------------------
+
+
+ZM=$(ls -la) - zawsze zadziala
+ZM='ls -la' - moze nie zadzialac na starszych wersjach, jest troche szybsza niz pierwsza opcja

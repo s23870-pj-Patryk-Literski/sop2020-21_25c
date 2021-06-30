@@ -1,0 +1,26 @@
+Instalacja Debiana:
+
+1.Pobieramy Debiana ze strony Debian.org z linku na głownej stronie.
+
+2. Pobieramy i instalujemy Virtual boxa na któym będziemy instalować Debiana
+
+3. Otwieramy Virtual Boxa. Naciskamy Maszyna -> Nowa. Wpisujemy nazwę naszej maszyny, jeśli wpiszemy Debian windows automatycznie wybierze wersję Debian 64. Wybieramy Ilość pamięci 2048.
+Po kliknięci w stwórz wirtualny dysk pokażą nam się opcje: VDI, VHD, VDMI.
+Wybieramy VDI. Następnie widzimy: Pamięć dynamicznie przydzielona(przydziela pamięć dynamicznie, czyli bierze jej tylko tyle ile potrzebuje) lub Stały rozmiar pamięci(wierze maksymalną możliwą pamięć). Wybieramy pamięć dynamiczną . Następnie ustawiamy rozmiar i lokalizację pliku.
+
+4. Następnie wchodzimy w ustawienia Debiana -> System i odznaczamy Floppy, następnie wchodzimy w napęd optyczny -> procesor, mnieniamy 1CPU na 2 CPU. Wchozimy  w Pamięć, klikamy w ikonę płytki, klikamy niebieski przycisk po prawej stronie, klikamy Choose disk file -> wskazujemy pobrany plik. W zakładce dźwięk wyłączamy go. Chyb że któś chce mieć dźwięk. Wchodzimy w sieć i wybieramy sieć podłączoną do NAT, żeby maszyna miała dotęp do internetu.
+
+5. Uruchamiamy maszynę wirtualną. Klikamy w opcję zwykły start, po adpaleniu staramy się wcisnąć F12, żeby wejsć do opcji. Przechodzimy do CD-ROM gdzie pokażą nam się opcje:
+-Graphical install (instalator graficzny)
+-Install ((instalator tekstowy)
+-Advanced options (zaawansowane opcje)
+-Accessible dark contrast installer menu (instalator z kontrastowymi kolorami dla osób z problemami ze wzroekiem)
+-Help
+-Install with speech synthesis (instalacja z dźwiękiem)
+Wybieramy install, następnie jeżyk angielki, region Europe -> Poland ->język United States -> klawiatura
+ American English.
+Następnie podajemy nazwę systemu, ustawiamy hasło administratora, podajemy nazwę administratora, następnie login i hasło użytkownika.
+Następnie partycjujemy wybierając Guided partitioning -> Guided-use entire disk -> "nazwa naszego dysku" -> czyścimy partycję ->create nwe partcion -> podajemy rozmiar partycji -> primary -> begining
+
+Następnie wybieramy swap area -> zapisujem zmiany -> wybieramy serwer do pobrania pakietów, następnie zobaczymy softwere selection gdzie dwie ostatnie opcje pozostaną wyłączone. wchodzimy w lokalizację systemu, wybór dysku twardego, automatyczny restart maszyny wirtualnej i wybieramy Debian GNU/Linux.
+Logujemy się podając login i hasło użytkownika. Wciskamy alt+F2, która otworzy nową konsolę, na której logujemy się jako root, wpisujemy polecenie apt-get undate w celu aktualizaji pakietów.
