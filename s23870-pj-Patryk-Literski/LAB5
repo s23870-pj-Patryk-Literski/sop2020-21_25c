@@ -134,11 +134,11 @@ int main(int argc, char **argv){
 	
         if(Fork > 0){
         
- 	     int sum = 0;
+ 	  int sum = 0;
         
-	for(p=0; p <= numbers; p++){
+	  for(p=0; p <= numbers; p++){
             
-	     sum += p;
+	      sum += p;
         
 	}
         
@@ -178,7 +178,7 @@ int main(int argc, char **agrv){
         
 	     pid_t pid = fork();
         
-	} if(pid()==0) {
+	} if(pid==0) {
             
              printf("PID: %d\t PPID: %d\n", p, getpid(), getppid());
         
