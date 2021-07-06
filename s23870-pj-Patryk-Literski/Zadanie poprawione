@@ -1,0 +1,79 @@
+Zadanie 2.02
+
+Pisze Program :
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main(int argc, char** argv) {
+    
+	FILE *inputfile;
+    	FILE *binFile;
+    
+	int p = 0;
+	int linestoread = 0;
+	int *numbers;
+
+
+	printf("%d %s \n", argc, argv[1]);
+
+
+	inputfile = fopen("input.txt", "r");
+    
+	binFile = fopen("input.bin", "wb");
+
+
+
+	if(inputfile == NULL || binFile == NULL) {
+        
+   	     fprintf(stderr, "Błąd : nie można otworzyć pliku /n");
+        
+             return 1;
+    
+	}
+
+	if(argc == 2) {
+         
+	    if(argv[1] == "--print") {
+            
+		fread(numbers, sizeof(int), 1, binFile);
+            
+		printf("Plik: %d\n", numbers);
+           
+		return 0;
+         
+            }
+    
+	}
+
+	fscanf(inputfile, "%d\n", &linestoread);
+
+	numbers = malloc(linestoread * sizeof(int));
+
+        while(!numbers) {
+
+          numbers = malloc(linestoread * sizeof(int));
+
+        }
+
+	for(p = 0; p < linestoread; p++) {
+        
+	     int temp = 0;
+        
+	     fscanf(inputfile, "%d\n", &temp);
+        
+	     numbers[p] = temp;
+
+	}
+    
+	fclose(inputfile);
+	
+	fwrite(&numbers, sizeof(numbers), 1, binFile);
+    	fclose(binFile);
+
+	free(numbers);
+
+	return 0;
+
+}
